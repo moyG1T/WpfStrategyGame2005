@@ -32,10 +32,10 @@
                     </DockPanel>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Height="15" Width="15" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" ></Button>
-                    <Button Height="15" Width="15" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+"></Button>
-                    <Button Height="15" Width="15" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+"></Button>
-                    <Button Height="15" Width="15" FontSize="8" Padding="0" Margin="0" Content="+"></Button>
+                    <Button x:Name="StrengthUp" Height="15" Width="15" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                    <Button x:Name="DexteryUp" Height="15" Width="15" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                    <Button x:Name="IntelligenceUp" Height="15" Width="15" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                    <Button x:Name="VitalityUp" Height="15" Width="15" FontSize="8" Padding="0" Margin="0" Content="+" Click="Up_Click"></Button>
                 </StackPanel>
             </DockPanel>
             <StackPanel Width="200" HorizontalAlignment="Left">
@@ -72,7 +72,12 @@
                     <TextBlock HorizontalAlignment="Left">Критический урон</TextBlock>
                     <TextBlock x:Name="CritDamageText" HorizontalAlignment="Right">**/**</TextBlock>
                 </DockPanel>
+                <DockPanel>
+                    <TextBlock HorizontalAlignment="Left">Свободные очки навыков</TextBlock>
+                    <TextBlock x:Name="SkillPoints" HorizontalAlignment="Right"></TextBlock>
+                </DockPanel>
             </StackPanel>
+            <Button x:Name="Back" Click="Back_Click">Назад</Button>
         </StackPanel>
     </Grid>
 </Page>

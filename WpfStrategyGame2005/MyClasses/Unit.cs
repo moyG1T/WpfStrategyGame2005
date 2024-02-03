@@ -13,42 +13,21 @@ namespace WpfStrategyGame2005.MyClasses
         private int _dexterity;
         private int _intelligence;
         private int _vitality;
-        private int _health;
-        private int _mana;
-        private int _physicalDamage;
-        private int _armor;
-        private int _magicDamage;
-        private int _magicArmor;
-        private int _critChance;
-        private int _critDamage;
 
         public string Name { get; set; }
-        public int Health
-        {
-            get { return _health; }
-            set
-            {
-                _health = value;
-            }
-        }
+        public string Photo { get; set; }
+        public int Health { get; set; }
         public int MaxHealth { get; set; }
 
-        public int Mana
-        {
-            get { return _mana; }
-            set { _mana = value; }
-        }
-
-
-
+        public int Mana { get; set; }
 
         public virtual int Strength
         {
             get { return _strength; }
             set
             {
-                _health = _vitality * 2 + value;
-                _physicalDamage = value;
+                Health = _vitality * 2 + value;
+                PhysicalDamage = value;
                 _strength = value;
             }
         }
@@ -59,9 +38,9 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _dexterity; }
             set
             {
-                _armor = value;
-                _critChance = (int)(value * 0.2);
-                _critDamage = (int)(value * 0.1);
+                Armor = value;
+                CritChance = (int)(value * 0.2);
+                CritDamage = (int)(value * 0.1);
                 _dexterity = value;
             }
         }
@@ -72,9 +51,9 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _intelligence; }
             set
             {
-                _mana = value;
-                _magicDamage = (int)(value * 0.2);
-                _magicArmor = (int)(value * 0.5);
+                Mana = value;
+                MagicDamage = (int)(value * 0.2);
+                MagicArmor = (int)(value * 0.5);
                 _intelligence = value;
             }
         }
@@ -85,7 +64,7 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _vitality; }
             set
             {
-                _health = value * 2 + _strength;
+                Health = value * 2 + _strength;
                 _vitality = value;
             }
         }
@@ -94,40 +73,17 @@ namespace WpfStrategyGame2005.MyClasses
 
 
 
-        public int PhysicalDamage
-        {
-            get { return _physicalDamage; }
-            set { _physicalDamage = value; }
-        }
-        public int Armor
-        {
-            get { return _armor; }
-            set { _armor = value; }
-        }
-        public int MagicDamage
-        {
-            get { return _magicDamage; }
-            set { _magicDamage = value; }
-        }
-        public int MagicArmor
-        {
-            get { return _magicArmor; }
-            set { _magicArmor = value; }
-        }
-        public int CritChance
-        {
-            get { return _critChance; }
-            set { _critChance = value; }
-        }
-        public int CritDamage
-        {
-            get { return _critDamage; }
-            set { _critDamage = value; }
-        }
+        public int PhysicalDamage { get; set; }
+        public int Armor { get; set; }
+        public int MagicDamage { get; set; }
+        public int MagicArmor { get; set; }
+        public int CritChance { get; set; }
+        public int CritDamage { get; set; }
 
-        public Unit(string name, int strength, int dexterity, int intelligence, int vitality)
+        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality)
         {
             Name = name;
+            Photo = photo;
             Strength = strength;
             Dexterity = dexterity;
             Intelligence = intelligence;
