@@ -10,5 +10,9 @@
             <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="Background" Value="White"></Setter>
         </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
