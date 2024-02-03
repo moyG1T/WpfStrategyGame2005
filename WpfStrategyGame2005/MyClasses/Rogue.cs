@@ -1,7 +1,7 @@
 ﻿
 namespace WpfStrategyGame2005.MyClasses
 {
-    internal class Rogue : Unit
+    public class Rogue : Unit
     {
         private int _strength;
         private int _dexterity;

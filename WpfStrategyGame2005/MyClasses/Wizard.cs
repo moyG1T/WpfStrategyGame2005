@@ -1,7 +1,7 @@
 ﻿
 namespace WpfStrategyGame2005.MyClasses
 {
-    internal class Wizard : Unit
+    public class Wizard : Unit
     {
         private int _strength;
         private int _intelligence;

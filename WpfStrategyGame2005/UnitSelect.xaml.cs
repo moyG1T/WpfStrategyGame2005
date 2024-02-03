@@ -16,20 +16,17 @@ namespace WpfStrategyGame2005
 
         private void WarriorButton_Click(object sender, RoutedEventArgs e)
         {
-            Warrior warrior = new Warrior("Воин", "/Resources/cherry.jpg", 30, 15, 10, 25);
-            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(warrior));
+            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(App.warrior));
         }
 
         private void RogueButton_Click(object sender, RoutedEventArgs e)
         {
-            Rogue rogue = new Rogue("Жулик", "/Resources/rogue.jpg", 20, 30, 15, 20);
-            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(rogue));
+            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(App.rogue));
         }
 
         private void WizardButton_Click(object sender, RoutedEventArgs e)
         {
-            Wizard wizard = new Wizard("Волшебник", "/Resources/mag.png", 15, 20, 35, 15);
-            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(wizard));
+            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(App.wizard));
         }
     }
 }
