@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WpfStrategyGame2005.MyClasses
 {
     internal class Wizard : Unit
     {
         private int _strength;
-        private int _dexterity;
         private int _intelligence;
         private int _vitality;
 

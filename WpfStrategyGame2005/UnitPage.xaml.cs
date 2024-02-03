@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using WpfStrategyGame2005.MyClasses;
 
 namespace WpfStrategyGame2005
@@ -15,6 +18,10 @@ namespace WpfStrategyGame2005
         {
             InitializeComponent();
             unit = _unit;
+
+            ImageSource imageSource = new BitmapImage(new Uri(unit.Photo, UriKind.Relative));
+            UnitImage.Source = imageSource;
+
             Refresh();
         }
 
