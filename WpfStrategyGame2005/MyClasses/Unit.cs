@@ -13,8 +13,6 @@ namespace WpfStrategyGame2005.MyClasses
 
         public string Name { get; set; }
         public string Photo { get; set; }
-        public int Health { get; set; }
-        public int Mana { get; set; }
         public int Points { get; set; }
 
         public Weapons WeaponSlot
@@ -57,7 +55,7 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _strength; }
             set
             {
-                Health = _vitality * 2 + value;
+                Health = Vitality * 2 + value;
                 PhysicalDamage = value;
                 _strength = value;
             }
@@ -95,7 +93,7 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _vitality; }
             set
             {
-                Health = value * 2 + _strength;
+                Health = value * 2 + Strength;
                 _vitality = value;
             }
         }
@@ -103,7 +101,8 @@ namespace WpfStrategyGame2005.MyClasses
 
 
 
-
+        public int Health { get; set; }
+        public int Mana { get; set; }
         public int PhysicalDamage { get; set; }
         public int Armor { get; set; }
         public int MagicDamage { get; set; }
