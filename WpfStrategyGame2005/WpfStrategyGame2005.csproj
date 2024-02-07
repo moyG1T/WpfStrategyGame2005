@@ -58,6 +58,7 @@
     <Compile Include="MyClasses\Rogue.cs" />
     <Compile Include="MyClasses\Unit.cs" />
     <Compile Include="MyClasses\Warrior.cs" />
+    <Compile Include="MyClasses\Weapons.cs" />
     <Compile Include="MyClasses\Wizard.cs" />
     <Compile Include="MyInterfaces\IAttack.cs" />
     <Compile Include="MyInterfaces\IHealth.cs" />

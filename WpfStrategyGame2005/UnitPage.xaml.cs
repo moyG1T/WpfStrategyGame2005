@@ -31,15 +31,15 @@ namespace WpfStrategyGame2005
 
         private void Up_Click(object sender, RoutedEventArgs e)
         {
-            App.points = int.Parse(SkillPoints.Text);
-            if (App.points > 0)
+            unit.Points = int.Parse(SkillPoints.Text);
+            if (unit.Points > 0)
             {
                 if (sender.Equals(StrengthUp))
                 {
                     if (unit.Strength < unit.MaxStrength)
                     {
                         unit.Strength++;
-                        App.points--;
+                        unit.Points--;
                     }
                 }
                 else if (sender.Equals(DexteryUp))
@@ -47,7 +47,7 @@ namespace WpfStrategyGame2005
                     if (unit.Dexterity < unit.MaxDexterity)
                     {
                         unit.Dexterity++;
-                        App.points--;
+                        unit.Points--;
                     }
                 }
                 else if (sender.Equals(IntelligenceUp))
@@ -55,7 +55,7 @@ namespace WpfStrategyGame2005
                     if (unit.Intelligence < unit.MaxIntelligence)
                     {
                         unit.Intelligence++;
-                        App.points--;
+                        unit.Points--;
                     }
                 }
                 else if (sender.Equals(VitalityUp))
@@ -63,7 +63,7 @@ namespace WpfStrategyGame2005
                     if (unit.Vitality < unit.MaxVitality)
                     {
                         unit.Vitality++;
-                        App.points--;
+                        unit.Points--;
                     }
                 }
             }
@@ -90,12 +90,7 @@ namespace WpfStrategyGame2005
             CritChanceText.Text = unit.CritChance.ToString();
             CritDamageText.Text = unit.CritDamage.ToString();
 
-            SkillPoints.Text = App.points.ToString();
-        }
-
-        private void DexteryUp_Click(object sender, RoutedEventArgs e)
-        {
-
+            SkillPoints.Text = unit.Points.ToString();
         }
     }
 }

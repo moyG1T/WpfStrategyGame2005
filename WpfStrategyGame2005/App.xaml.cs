@@ -9,9 +9,8 @@ namespace WpfStrategyGame2005
     public partial class App : Application
     {
         public static MainWindow mainWindow;
-        public static Warrior warrior = new Warrior("Воин", "/Resources/cherry.jpg", 30, 15, 10, 25);
-        public static Rogue rogue = new Rogue("Жулик", "/Resources/rogue.jpg", 20, 30, 15, 20);
-        public static Wizard wizard = new Wizard("Волшебник", "/Resources/mag.png", 15, 20, 35, 15);
-        public static int points = 50;
+        public static Warrior warrior = new Warrior("Воин", "/Resources/cherry.jpg", 30, 15, 10, 25, 50);
+        public static Rogue rogue = new Rogue("Жулик", "/Resources/rogue.jpg", 20, 30, 15, 20, 50);
+        public static Wizard wizard = new Wizard("Волшебник", "/Resources/mag.png", 15, 20, 35, 15, 50);
     }
 }

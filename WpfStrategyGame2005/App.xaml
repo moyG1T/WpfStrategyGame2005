@@ -6,7 +6,7 @@
     <Application.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="Padding" Value="10,3,10,3"></Setter>
+            <Setter Property="Padding" Value="10 3 10 3"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="Background" Value="White"></Setter>
         </Style>
@@ -14,5 +14,6 @@
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="18"></Setter>
         </Style>
+
     </Application.Resources>
 </Application>

@@ -7,13 +7,14 @@ namespace WpfStrategyGame2005.MyClasses
         private int _dexterity;
         private int _intelligence;
         private int _vitality;
-        public Rogue(string name, string photo, int strength, int dexterity, int intelligence, int vitality) :
-            base(name, photo, strength, dexterity, intelligence, vitality)
+        public Rogue(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points) :
+            base(name, photo, strength, dexterity, intelligence, vitality, points)
         {
-            MaxStrength = 65;
-            MaxDexterity = 250;
-            MaxIntelligence = 70;
-            MaxVitality = 80;
+            MaxStrength = 250;
+            MaxDexterity = 80;
+            MaxIntelligence = 50;
+            MaxVitality = 100;
+            Points = 50;
         }
 
         public override int Strength

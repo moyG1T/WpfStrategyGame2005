@@ -13,6 +13,7 @@ namespace WpfStrategyGame2005.MyClasses
         public string Photo { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
+        public int Points { get; set; }
 
         public int Mana { get; set; }
 
@@ -75,7 +76,7 @@ namespace WpfStrategyGame2005.MyClasses
         public int CritChance { get; set; }
         public int CritDamage { get; set; }
 
-        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality)
+        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points)
         {
             Name = name;
             Photo = photo;
@@ -83,6 +84,7 @@ namespace WpfStrategyGame2005.MyClasses
             Dexterity = dexterity;
             Intelligence = intelligence;
             Vitality = vitality;
+            Points = points;
         }
 
         public void TakeDamage(int damage)
