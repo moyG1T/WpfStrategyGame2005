@@ -114,6 +114,25 @@ namespace WpfStrategyGame2005
             CritDamageText.Text = unit.CritDamage.ToString();
 
             SkillPoints.Text = unit.Points.ToString();
+
+            if (unit.Exp < 1000)
+                ExpText.Text = $"Лвл 1 - ({unit.Exp}/1000)";
+            else if (unit.Exp >= 1000 && unit.Exp < 3000)
+                ExpText.Text = $"Лвл 2 - ({unit.Exp-1000}/2000)";
+            else if (unit.Exp >= 3000 && unit.Exp < 6000)
+                ExpText.Text = $"Лвл 3 - ({unit.Exp-3000}/3000)";
+            else if (unit.Exp >= 6000 && unit.Exp < 10000)
+                ExpText.Text = $"Лвл 4 - ({unit.Exp-6000}/4000)";
+            else if (unit.Exp >= 10000 && unit.Exp < 15000)
+                ExpText.Text = $"Лвл 5 - ({unit.Exp-10000}/5000)";
+            else if (unit.Exp >= 1000 && unit.Exp < 3000)
+                ExpText.Text = $"Лвл 6 - ({unit.Exp-6000}/6000)";
+            else if (unit.Exp >= 1000 && unit.Exp < 3000)
+                ExpText.Text = $"Лвл 7 - ({unit.Exp-7000}/7000)";
+            else if (unit.Exp >= 1000 && unit.Exp < 3000)
+                ExpText.Text = $"Лвл 8 - ({unit.Exp-8000}/8000)";
+            else if (unit.Exp >= 1000 && unit.Exp < 3000)
+                ExpText.Text = $"Лвл 9 - ({unit.Exp-9000}/9000)";
         }
 
         private void Unload_Checked(object sender, RoutedEventArgs e)
@@ -149,6 +168,24 @@ namespace WpfStrategyGame2005
         private void LoadHammer_Checked(object sender, RoutedEventArgs e)
         {
             unit.WeaponSlot = Unit.Weapons.Hammer;
+            Refresh();
+        }
+
+        private void Plus100_Click(object sender, RoutedEventArgs e)
+        {
+            unit.Exp += 100;
+            Refresh();
+        }
+
+        private void Plus1000_Click(object sender, RoutedEventArgs e)
+        {
+            unit.Exp += 1000;
+            Refresh();
+        }
+
+        private void Plus10000_Click(object sender, RoutedEventArgs e)
+        {
+            unit.Exp += 10000;
             Refresh();
         }
     }

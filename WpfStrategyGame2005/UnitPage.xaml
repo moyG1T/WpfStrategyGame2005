@@ -12,9 +12,19 @@
         <Image x:Name="UnitImage" Stretch="Fill"></Image>
         <ScrollViewer HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalScrollBarVisibility="Hidden">
             <StackPanel Orientation="Horizontal">
+                <Border Margin="0 0 10 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                    <StackPanel>
+                        <Button x:Name="Plus100" Click="Plus100_Click">+100</Button>
+                        <Button x:Name="Plus1000" Click="Plus1000_Click">+1000</Button>
+                        <Button x:Name="Plus10000" Click="Plus10000_Click">+10000</Button>
+                    </StackPanel>
+                </Border>
                 <Border HorizontalAlignment="Center" Padding="20" VerticalAlignment="Center" Background="White" CornerRadius="15" Opacity="0.9">
                     <StackPanel Width="430">
-                        <TextBlock x:Name="NameText" HorizontalAlignment="Center">ВОИН</TextBlock>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <TextBlock x:Name="NameText" HorizontalAlignment="Center" Margin="0 0 10 0">ВОИН</TextBlock>
+                            <TextBlock x:Name="ExpText" HorizontalAlignment="Center">(**/**)</TextBlock>
+                        </StackPanel>
                         <DockPanel>
                             <StackPanel Width="400">
                                 <DockPanel Height="25" Margin="0 0 0 3">

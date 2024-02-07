@@ -14,6 +14,7 @@ namespace WpfStrategyGame2005.MyClasses
         public string Name { get; set; }
         public string Photo { get; set; }
         public int Points { get; set; }
+        public int Exp { get; set; }
 
         public Weapons WeaponSlot
         {
