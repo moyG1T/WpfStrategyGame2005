@@ -1,21 +1,56 @@
-﻿using WpfStrategyGame2005.MyInterfaces;
+﻿using System.Windows;
+using WpfStrategyGame2005.MyInterfaces;
 
 namespace WpfStrategyGame2005.MyClasses
 {
-    public class Unit : IHealth
+    public class Unit
     {
         private int _strength;
         private int _dexterity;
         private int _intelligence;
         private int _vitality;
+        private Weapons _weaponSlot;
 
         public string Name { get; set; }
         public string Photo { get; set; }
         public int Health { get; set; }
-        public int MaxHealth { get; set; }
+        public int Mana { get; set; }
         public int Points { get; set; }
 
-        public int Mana { get; set; }
+        public Weapons WeaponSlot
+        {
+            get { return _weaponSlot; }
+            set
+            {
+                switch (value)
+                {
+                    case Weapons.None:
+                        break;
+                    case Weapons.Stick:
+                        // TODO: MagicCrit
+                        break;
+                    case Weapons.Dagger:
+                        break;
+                    case Weapons.Sword:
+                        break;
+                    case Weapons.Axe:
+                        break;
+                    case Weapons.Hammer:
+                        break;
+                }
+                _weaponSlot = value;
+            }
+        }
+
+        public enum Weapons
+        {
+            None,
+            Stick,
+            Dagger,
+            Sword,
+            Axe,
+            Hammer
+        }
 
         public virtual int Strength
         {
@@ -76,7 +111,7 @@ namespace WpfStrategyGame2005.MyClasses
         public int CritChance { get; set; }
         public int CritDamage { get; set; }
 
-        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points)
+        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points, Weapons weaponSlot)
         {
             Name = name;
             Photo = photo;
@@ -85,6 +120,7 @@ namespace WpfStrategyGame2005.MyClasses
             Intelligence = intelligence;
             Vitality = vitality;
             Points = points;
+            WeaponSlot = weaponSlot;
         }
 
         public void TakeDamage(int damage)

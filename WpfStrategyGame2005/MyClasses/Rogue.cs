@@ -7,8 +7,8 @@ namespace WpfStrategyGame2005.MyClasses
         private int _dexterity;
         private int _intelligence;
         private int _vitality;
-        public Rogue(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points) :
-            base(name, photo, strength, dexterity, intelligence, vitality, points)
+        public Rogue(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points, Weapons weapons) :
+            base(name, photo, strength, dexterity, intelligence, vitality, points, weapons)
         {
             MaxStrength = 250;
             MaxDexterity = 80;

@@ -10,78 +10,90 @@
 
     <Grid>
         <Image x:Name="UnitImage" Stretch="Fill"></Image>
-        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
-            <Border HorizontalAlignment="Center" Padding="20" VerticalAlignment="Center" Background="White" CornerRadius="15" Opacity="0.9">
-                <StackPanel Width="430">
-                    <TextBlock x:Name="NameText" HorizontalAlignment="Center">ВОИН</TextBlock>
-                    <DockPanel>
-                        <StackPanel Width="400">
-                            <DockPanel Height="25" Margin="0 0 0 3">
-                                <TextBlock HorizontalAlignment="Left">Сила</TextBlock>
-                                <TextBlock x:Name="StrengthText" HorizontalAlignment="Right">**/**</TextBlock>
-                            </DockPanel>
-                            <DockPanel Height="25" Margin="0 0 0 3">
-                                <TextBlock HorizontalAlignment="Left">Ловкость</TextBlock>
-                                <TextBlock x:Name="DexterityText" HorizontalAlignment="Right">**/**</TextBlock>
-                            </DockPanel>
-                            <DockPanel Height="25" Margin="0 0 0 3">
-                                <TextBlock HorizontalAlignment="Left">Интеллект</TextBlock>
-                                <TextBlock x:Name="IntelligenceText" HorizontalAlignment="Right">**/**</TextBlock>
-                            </DockPanel>
-                            <DockPanel Height="25">
-                                <TextBlock HorizontalAlignment="Left">Живучесть</TextBlock>
-                                <TextBlock x:Name="VitalityText" HorizontalAlignment="Right">**/**</TextBlock>
-                            </DockPanel>
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <Button x:Name="StrengthUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
-                            <Button x:Name="DexteryUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
-                            <Button x:Name="IntelligenceUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
-                            <Button x:Name="VitalityUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0" Content="+" Click="Up_Click"></Button>
-                        </StackPanel>
-                    </DockPanel>
-                    <StackPanel Width="400" HorizontalAlignment="Left">
-                        <DockPanel Margin="0 15 0 0">
-                            <TextBlock HorizontalAlignment="Left">Здоровье</TextBlock>
-                            <TextBlock x:Name ="HealthText"  HorizontalAlignment="Right">**/**</TextBlock>
-                        </DockPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Orientation="Horizontal">
+                <Border HorizontalAlignment="Center" Padding="20" VerticalAlignment="Center" Background="White" CornerRadius="15" Opacity="0.9">
+                    <StackPanel Width="430">
+                        <TextBlock x:Name="NameText" HorizontalAlignment="Center">ВОИН</TextBlock>
                         <DockPanel>
-                            <TextBlock HorizontalAlignment="Left">Мана</TextBlock>
-                            <TextBlock x:Name="ManaText" HorizontalAlignment="Right">**/**</TextBlock>
+                            <StackPanel Width="400">
+                                <DockPanel Height="25" Margin="0 0 0 3">
+                                    <TextBlock HorizontalAlignment="Left">Сила</TextBlock>
+                                    <TextBlock x:Name="StrengthText" HorizontalAlignment="Right">**/**</TextBlock>
+                                </DockPanel>
+                                <DockPanel Height="25" Margin="0 0 0 3">
+                                    <TextBlock HorizontalAlignment="Left">Ловкость</TextBlock>
+                                    <TextBlock x:Name="DexterityText" HorizontalAlignment="Right">**/**</TextBlock>
+                                </DockPanel>
+                                <DockPanel Height="25" Margin="0 0 0 3">
+                                    <TextBlock HorizontalAlignment="Left">Интеллект</TextBlock>
+                                    <TextBlock x:Name="IntelligenceText" HorizontalAlignment="Right">**/**</TextBlock>
+                                </DockPanel>
+                                <DockPanel Height="25">
+                                    <TextBlock HorizontalAlignment="Left">Живучесть</TextBlock>
+                                    <TextBlock x:Name="VitalityText" HorizontalAlignment="Right">**/**</TextBlock>
+                                </DockPanel>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="StrengthUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                                <Button x:Name="DexteryUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                                <Button x:Name="IntelligenceUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                                <Button x:Name="VitalityUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0" Content="+" Click="Up_Click"></Button>
+                            </StackPanel>
                         </DockPanel>
+                        <StackPanel Width="400" HorizontalAlignment="Left">
+                            <DockPanel Margin="0 15 0 0">
+                                <TextBlock HorizontalAlignment="Left">Здоровье</TextBlock>
+                                <TextBlock x:Name ="HealthText"  HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock HorizontalAlignment="Left">Мана</TextBlock>
+                                <TextBlock x:Name="ManaText" HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
 
-                        <DockPanel Margin="0 15 0 0">
-                            <TextBlock HorizontalAlignment="Left">Физический урон</TextBlock>
-                            <TextBlock x:Name="PhysicalDamageText" HorizontalAlignment="Right">**/**</TextBlock>
-                        </DockPanel>
-                        <DockPanel>
-                            <TextBlock HorizontalAlignment="Left">Броня</TextBlock>
-                            <TextBlock x:Name="ArmorText" HorizontalAlignment="Right">**/**</TextBlock>
-                        </DockPanel>
-                        <DockPanel>
-                            <TextBlock HorizontalAlignment="Left">Магический урон</TextBlock>
-                            <TextBlock x:Name="MagicDamageText"  HorizontalAlignment="Right">**/**</TextBlock>
-                        </DockPanel>
-                        <DockPanel>
-                            <TextBlock HorizontalAlignment="Left">Магическая защита</TextBlock>
-                            <TextBlock x:Name="MagicArmorText" HorizontalAlignment="Right">**/**</TextBlock>
-                        </DockPanel>
-                        <DockPanel>
-                            <TextBlock HorizontalAlignment="Left">Шанс крита</TextBlock>
-                            <TextBlock x:Name="CritChanceText" HorizontalAlignment="Right">**/**</TextBlock>
-                        </DockPanel>
-                        <DockPanel>
-                            <TextBlock HorizontalAlignment="Left">Критический урон</TextBlock>
-                            <TextBlock x:Name="CritDamageText" HorizontalAlignment="Right">**/**</TextBlock>
-                        </DockPanel>
-                        <DockPanel Margin="0 15 0 0">
-                            <TextBlock HorizontalAlignment="Left">Свободные очки навыков</TextBlock>
-                            <TextBlock x:Name="SkillPoints" HorizontalAlignment="Right"></TextBlock>
-                        </DockPanel>
+                            <DockPanel Margin="0 15 0 0">
+                                <TextBlock HorizontalAlignment="Left">Физический урон</TextBlock>
+                                <TextBlock x:Name="PhysicalDamageText" HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock HorizontalAlignment="Left">Броня</TextBlock>
+                                <TextBlock x:Name="ArmorText" HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock HorizontalAlignment="Left">Магический урон</TextBlock>
+                                <TextBlock x:Name="MagicDamageText"  HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock HorizontalAlignment="Left">Магическая защита</TextBlock>
+                                <TextBlock x:Name="MagicArmorText" HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock HorizontalAlignment="Left">Шанс крита</TextBlock>
+                                <TextBlock x:Name="CritChanceText" HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock HorizontalAlignment="Left">Критический урон</TextBlock>
+                                <TextBlock x:Name="CritDamageText" HorizontalAlignment="Right">**/**</TextBlock>
+                            </DockPanel>
+                            <DockPanel Margin="0 15 0 0">
+                                <TextBlock HorizontalAlignment="Left">Свободные очки навыков</TextBlock>
+                                <TextBlock x:Name="SkillPoints" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                        </StackPanel>
+                        <Button x:Name="Back" Click="Back_Click">Назад</Button>
                     </StackPanel>
-                    <Button x:Name="Back" Click="Back_Click">Назад</Button>
-                </StackPanel>
-            </Border>
+                </Border>
+                <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                    <StackPanel>
+                        <RadioButton x:Name="Unload" Checked="Unload_Checked">Убрать оружие</RadioButton>
+                        <RadioButton x:Name="LoadStick" Checked="LoadStick_Checked">Палка-копалка</RadioButton>
+                        <RadioButton x:Name="LoadDagger" Checked="LoadDagger_Checked">Точка-заточка</RadioButton>
+                        <RadioButton x:Name="LoadSword" Checked="LoadSword_Checked">Меч-тебе-всечь</RadioButton>
+                        <RadioButton x:Name="LoadAxe" Checked="LoadAxe_Checked">Топорик-киркорик</RadioButton>
+                        <RadioButton x:Name="LoadHammer" Checked="LoadHammer_Checked">Молоток-прямоток</RadioButton>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

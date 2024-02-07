@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using WpfStrategyGame2005.MyClasses;
+using System.Diagnostics.Eventing.Reader;
 
 namespace WpfStrategyGame2005
 {
@@ -20,6 +21,28 @@ namespace WpfStrategyGame2005
 
             ImageSource imageSource = new BitmapImage(new Uri(unit.Photo, UriKind.Relative));
             UnitImage.Source = imageSource;
+
+            switch (unit.WeaponSlot)
+            {
+                case Unit.Weapons.None:
+                    Unload.IsChecked = true;
+                    break;
+                case Unit.Weapons.Stick:
+                    LoadStick.IsChecked = true;
+                    break;
+                case Unit.Weapons.Dagger:
+                    LoadDagger.IsChecked = true;
+                    break;
+                case Unit.Weapons.Sword:
+                    LoadSword.IsChecked = true;
+                    break;
+                case Unit.Weapons.Axe:
+                    LoadAxe.IsChecked = true;
+                    break;
+                case Unit.Weapons.Hammer:
+                    LoadHammer.IsChecked = true;
+                    break;
+            }
 
             Refresh();
         }
@@ -91,6 +114,42 @@ namespace WpfStrategyGame2005
             CritDamageText.Text = unit.CritDamage.ToString();
 
             SkillPoints.Text = unit.Points.ToString();
+        }
+
+        private void Unload_Checked(object sender, RoutedEventArgs e)
+        {
+            unit.WeaponSlot = Unit.Weapons.None;
+            Refresh();
+        }
+
+        private void LoadStick_Checked(object sender, RoutedEventArgs e)
+        {
+            unit.WeaponSlot = Unit.Weapons.Stick;
+            Refresh();
+        }
+
+        private void LoadDagger_Checked(object sender, RoutedEventArgs e)
+        {
+            unit.WeaponSlot = Unit.Weapons.Dagger;
+            Refresh();
+        }
+
+        private void LoadSword_Checked(object sender, RoutedEventArgs e)
+        {
+            unit.WeaponSlot = Unit.Weapons.Sword;
+            Refresh();
+        }
+
+        private void LoadAxe_Checked(object sender, RoutedEventArgs e)
+        {
+            unit.WeaponSlot = Unit.Weapons.Axe;
+            Refresh();
+        }
+
+        private void LoadHammer_Checked(object sender, RoutedEventArgs e)
+        {
+            unit.WeaponSlot = Unit.Weapons.Hammer;
+            Refresh();
         }
     }
 }

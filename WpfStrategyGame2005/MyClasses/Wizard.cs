@@ -7,13 +7,14 @@ namespace WpfStrategyGame2005.MyClasses
         private int _intelligence;
         private int _vitality;
 
-        public Wizard(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points) :
-            base(name, photo, strength, dexterity, intelligence, vitality, points)
+        public Wizard(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points, Weapons weapons) :
+            base(name, photo, strength, dexterity, intelligence, vitality, points, weapons)
         {
             MaxStrength = 250;
             MaxDexterity = 80;
             MaxIntelligence = 50;
             MaxVitality = 100;
+            Points = 50;
         }
 
         public override int Strength
