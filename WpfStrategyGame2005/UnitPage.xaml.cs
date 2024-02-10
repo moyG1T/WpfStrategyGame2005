@@ -6,6 +6,7 @@ using System.Windows.Media;
 using WpfStrategyGame2005.MyClasses;
 using System.Diagnostics.Eventing.Reader;
 
+#pragma warning disable CS0168 // Переменная объявлена, но не используется
 namespace WpfStrategyGame2005
 {
     /// <summary>
@@ -14,6 +15,22 @@ namespace WpfStrategyGame2005
     public partial class UnitPage : Page
     {
         private Unit unit;
+
+        int strength;
+        int dexterity;
+        int intelligence;
+        int vitality;
+
+        int health;
+        int mana;
+
+        int physicalDamage;
+        int armor;
+        int magicDamage;
+        int magicArmor;
+        int critChance;
+        int critDamage;
+
         public UnitPage(Unit _unit)
         {
             InitializeComponent();
@@ -22,7 +39,8 @@ namespace WpfStrategyGame2005
             ImageSource imageSource = new BitmapImage(new Uri(unit.Photo, UriKind.Relative));
             UnitImage.Source = imageSource;
 
-            switch (unit.WeaponSlot)
+
+            switch (unit.RightHand)
             {
                 case Unit.Weapons.None:
                     Unload.IsChecked = true;
@@ -94,80 +112,143 @@ namespace WpfStrategyGame2005
             Refresh();
         }
 
+        private void ShowStats(int strg, int dext, int intel, int vit,
+            int hlth, int mn, int pDamage, int armr, int mDamage, int mArmor, int cChance, int cDamage)
+        {
+            if (strg >= unit.MaxStrength)
+                strg = unit.MaxStrength;
+            if (dext >= unit.MaxDexterity)
+                dext = unit.MaxDexterity;
+            if (intel >= unit.MaxIntelligence)
+                intel = unit.MaxIntelligence;
+            if (vit >= unit.MaxVitality)
+                vit = unit.MaxVitality;
+
+            StrengthText.Text = $"{strg}/{unit.MaxStrength}";
+            DexterityText.Text = $"{dext}/{unit.MaxDexterity}";
+            IntelligenceText.Text = $"{intel}/{unit.MaxIntelligence}";
+            VitalityText.Text = $"{vit}/{unit.MaxVitality}";
+
+            HealthText.Text = $"{hlth}";
+            ManaText.Text = $"{mn}";
+
+            PhysicalDamageText.Text = pDamage.ToString();
+            ArmorText.Text = armr.ToString();
+            MagicDamageText.Text = mDamage.ToString();
+            MagicArmorText.Text = mArmor.ToString();
+            CritChanceText.Text = cChance.ToString();
+            CritDamageText.Text = cDamage.ToString();
+        }
+
         private void Refresh()
         {
+            strength = unit.Strength;
+            dexterity = unit.Dexterity;
+            intelligence = unit.Intelligence;
+            vitality = unit.Vitality;
+
+            health = unit.Health;
+            mana = unit.Mana;
+
+            physicalDamage = unit.PhysicalDamage;
+            armor = unit.Armor;
+            magicDamage = unit.MagicDamage;
+            magicArmor = unit.MagicArmor;
+            critChance = unit.CritChance;
+            critDamage = unit.CritDamage;
+
+            switch (unit.RightHand)
+            {
+                case Unit.Weapons.None:
+                    ShowStats(strength, dexterity, intelligence, vitality, health, mana,
+                        physicalDamage, armor, magicDamage, magicArmor, critChance, critDamage);
+                    break;
+
+                case Unit.Weapons.Stick:
+                    ShowStats(strength, dexterity, intelligence, vitality, health * 2, mana * 2,
+                        (int)(physicalDamage * 1.1), armor, magicDamage, magicArmor, (int)(critChance * 1.05), critDamage * 3);
+                    break;
+
+                case Unit.Weapons.Dagger:
+                    ShowStats(strength, dexterity * 2, intelligence, vitality, health, mana,
+                        (int)(physicalDamage * 1.25), armor, magicDamage, magicArmor, critChance, critDamage);
+                    break;
+
+                case Unit.Weapons.Sword:
+                    ShowStats((int)(strength * 1.5), (int)(dexterity * 0.5), intelligence, vitality, health, mana,
+                        (int)(physicalDamage * 1.5), armor, magicDamage, magicArmor, (int)(critChance * 1.05), (int)(critDamage * 1.05));
+                    break;
+
+                case Unit.Weapons.Axe:
+                    ShowStats(strength * 2, dexterity, intelligence, vitality, health, mana,
+                        physicalDamage * 2, armor, magicDamage, magicArmor, (int)(critChance * 1.2), (int)(critDamage * 1.7));
+                    break;
+
+                case Unit.Weapons.Hammer:
+                    ShowStats(strength, dexterity, intelligence, vitality, health * 2, mana,
+                        (int)(physicalDamage * 2.5), armor, magicDamage, magicArmor, (int)(critChance * 1.1), (int)(critDamage * 2.5));
+                    break;
+            }
+
             NameText.Text = unit.Name;
-
-            StrengthText.Text = $"{unit.Strength}/{unit.MaxStrength}";
-            DexterityText.Text = $"{unit.Dexterity}/{unit.MaxDexterity}";
-            IntelligenceText.Text = $"{unit.Intelligence}/{unit.MaxIntelligence}";
-            VitalityText.Text = $"{unit.Vitality}/{unit.MaxVitality}";
-
-            HealthText.Text = $"{unit.Health}";
-            ManaText.Text = $"{unit.Mana}";
-
-            PhysicalDamageText.Text = unit.PhysicalDamage.ToString();
-            ArmorText.Text = unit.Armor.ToString();
-            MagicDamageText.Text = unit.MagicDamage.ToString();
-            MagicArmorText.Text = unit.MagicArmor.ToString();
-            CritChanceText.Text = unit.CritChance.ToString();
-            CritDamageText.Text = unit.CritDamage.ToString();
 
             SkillPoints.Text = unit.Points.ToString();
 
             if (unit.Exp < 1000)
                 ExpText.Text = $"Лвл 1 - ({unit.Exp}/1000)";
             else if (unit.Exp >= 1000 && unit.Exp < 3000)
-                ExpText.Text = $"Лвл 2 - ({unit.Exp-1000}/2000)";
+                ExpText.Text = $"Лвл 2 - ({unit.Exp - 1000}/2000)";
             else if (unit.Exp >= 3000 && unit.Exp < 6000)
-                ExpText.Text = $"Лвл 3 - ({unit.Exp-3000}/3000)";
+                ExpText.Text = $"Лвл 3 - ({unit.Exp - 3000}/3000)";
             else if (unit.Exp >= 6000 && unit.Exp < 10000)
-                ExpText.Text = $"Лвл 4 - ({unit.Exp-6000}/4000)";
+                ExpText.Text = $"Лвл 4 - ({unit.Exp - 6000}/4000)";
             else if (unit.Exp >= 10000 && unit.Exp < 15000)
-                ExpText.Text = $"Лвл 5 - ({unit.Exp-10000}/5000)";
-            else if (unit.Exp >= 1000 && unit.Exp < 3000)
-                ExpText.Text = $"Лвл 6 - ({unit.Exp-6000}/6000)";
-            else if (unit.Exp >= 1000 && unit.Exp < 3000)
-                ExpText.Text = $"Лвл 7 - ({unit.Exp-7000}/7000)";
-            else if (unit.Exp >= 1000 && unit.Exp < 3000)
-                ExpText.Text = $"Лвл 8 - ({unit.Exp-8000}/8000)";
-            else if (unit.Exp >= 1000 && unit.Exp < 3000)
-                ExpText.Text = $"Лвл 9 - ({unit.Exp-9000}/9000)";
+                ExpText.Text = $"Лвл 5 - ({unit.Exp - 10000}/5000)";
+            else if (unit.Exp >= 15000 && unit.Exp < 21000)
+                ExpText.Text = $"Лвл 6 - ({unit.Exp - 15000}/6000)";
+            else if (unit.Exp >= 21000 && unit.Exp < 28000)
+                ExpText.Text = $"Лвл 7 - ({unit.Exp - 21000}/7000)";
+            else if (unit.Exp >= 28000 && unit.Exp < 36000)
+                ExpText.Text = $"Лвл 8 - ({unit.Exp - 28000}/8000)";
+            else if (unit.Exp >= 36000 && unit.Exp < 45000)
+                ExpText.Text = $"Лвл 9 - ({unit.Exp - 36000}/9000)";
+            else if (unit.Exp >= 45000)
+                ExpText.Text = $"Лвл 10 - ({unit.Exp - 45000})";
         }
 
         private void Unload_Checked(object sender, RoutedEventArgs e)
         {
-            unit.WeaponSlot = Unit.Weapons.None;
+            unit.RightHand = Unit.Weapons.None;
             Refresh();
         }
 
         private void LoadStick_Checked(object sender, RoutedEventArgs e)
         {
-            unit.WeaponSlot = Unit.Weapons.Stick;
+            unit.RightHand = Unit.Weapons.Stick;
             Refresh();
         }
 
         private void LoadDagger_Checked(object sender, RoutedEventArgs e)
         {
-            unit.WeaponSlot = Unit.Weapons.Dagger;
+            unit.RightHand = Unit.Weapons.Dagger;
             Refresh();
         }
 
         private void LoadSword_Checked(object sender, RoutedEventArgs e)
         {
-            unit.WeaponSlot = Unit.Weapons.Sword;
+            unit.RightHand = Unit.Weapons.Sword;
             Refresh();
         }
 
         private void LoadAxe_Checked(object sender, RoutedEventArgs e)
         {
-            unit.WeaponSlot = Unit.Weapons.Axe;
+            unit.RightHand = Unit.Weapons.Axe;
             Refresh();
         }
 
         private void LoadHammer_Checked(object sender, RoutedEventArgs e)
         {
-            unit.WeaponSlot = Unit.Weapons.Hammer;
+            unit.RightHand = Unit.Weapons.Hammer;
             Refresh();
         }
 

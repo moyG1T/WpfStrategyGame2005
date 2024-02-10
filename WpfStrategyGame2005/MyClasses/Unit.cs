@@ -9,16 +9,17 @@ namespace WpfStrategyGame2005.MyClasses
         private int _dexterity;
         private int _intelligence;
         private int _vitality;
-        private Weapons _weaponSlot;
+        private Weapons _rightHand;
+        private Weapons _leftHand;
 
         public string Name { get; set; }
         public string Photo { get; set; }
         public int Points { get; set; }
         public int Exp { get; set; }
 
-        public Weapons WeaponSlot
+        public Weapons RightHand
         {
-            get { return _weaponSlot; }
+            get { return _rightHand; }
             set
             {
                 switch (value)
@@ -26,7 +27,6 @@ namespace WpfStrategyGame2005.MyClasses
                     case Weapons.None:
                         break;
                     case Weapons.Stick:
-                        // TODO: MagicCrit
                         break;
                     case Weapons.Dagger:
                         break;
@@ -37,7 +37,20 @@ namespace WpfStrategyGame2005.MyClasses
                     case Weapons.Hammer:
                         break;
                 }
-                _weaponSlot = value;
+                _rightHand = value;
+            }
+        }
+
+        public Weapons LeftHand
+        {
+            get { return _rightHand; }
+            set
+            {
+                if (RightHand == Weapons.Dagger)
+                    _leftHand = value;
+
+                if (LeftHand == Weapons.Shield && RightHand != Weapons.Dagger)
+                    _leftHand = value;
             }
         }
 
@@ -48,7 +61,8 @@ namespace WpfStrategyGame2005.MyClasses
             Dagger,
             Sword,
             Axe,
-            Hammer
+            Hammer,
+            Shield
         }
 
         public virtual int Strength
@@ -120,7 +134,7 @@ namespace WpfStrategyGame2005.MyClasses
             Intelligence = intelligence;
             Vitality = vitality;
             Points = points;
-            WeaponSlot = weaponSlot;
+            RightHand = weaponSlot;
         }
 
         public void TakeDamage(int damage)
