@@ -1,69 +1,22 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using WpfStrategyGame2005.MyInterfaces;
 
 namespace WpfStrategyGame2005.MyClasses
 {
-    public class Unit
+    public class Unit : INotifyPropertyChanged
     {
         private int _strength;
         private int _dexterity;
         private int _intelligence;
         private int _vitality;
-        private Weapons _rightHand;
-        private Weapons _leftHand;
+
 
         public string Name { get; set; }
         public string Photo { get; set; }
         public int Points { get; set; }
         public int Exp { get; set; }
-
-        public Weapons RightHand
-        {
-            get { return _rightHand; }
-            set
-            {
-                switch (value)
-                {
-                    case Weapons.None:
-                        break;
-                    case Weapons.Stick:
-                        break;
-                    case Weapons.Dagger:
-                        break;
-                    case Weapons.Sword:
-                        break;
-                    case Weapons.Axe:
-                        break;
-                    case Weapons.Hammer:
-                        break;
-                }
-                _rightHand = value;
-            }
-        }
-
-        public Weapons LeftHand
-        {
-            get { return _rightHand; }
-            set
-            {
-                if (RightHand == Weapons.Dagger)
-                    _leftHand = value;
-
-                if (LeftHand == Weapons.Shield && RightHand != Weapons.Dagger)
-                    _leftHand = value;
-            }
-        }
-
-        public enum Weapons
-        {
-            None,
-            Stick,
-            Dagger,
-            Sword,
-            Axe,
-            Hammer,
-            Shield
-        }
 
         public virtual int Strength
         {
@@ -73,6 +26,7 @@ namespace WpfStrategyGame2005.MyClasses
                 Health = Vitality * 2 + value;
                 PhysicalDamage = value;
                 _strength = value;
+                OnPropertyChanged("Strength");
             }
         }
         public int MaxStrength { get; set; }
@@ -85,7 +39,11 @@ namespace WpfStrategyGame2005.MyClasses
                 Armor = value;
                 CritChance = (int)(value * 0.2);
                 CritDamage = (int)(value * 0.1);
-                _dexterity = value;
+                //if (value >= MaxDexterity)
+                //    _dexterity = MaxDexterity;
+                //else
+                    _dexterity = value;
+                OnPropertyChanged("Dexterity");
             }
         }
         public int MaxDexterity { get; set; }
@@ -98,7 +56,11 @@ namespace WpfStrategyGame2005.MyClasses
                 Mana = value;
                 MagicDamage = (int)(value * 0.2);
                 MagicArmor = (int)(value * 0.5);
-                _intelligence = value;
+                //if (value >= MaxIntelligence)
+                //    _intelligence = MaxIntelligence;
+                //else
+                    _intelligence = value;
+                OnPropertyChanged("Intelligence");
             }
         }
         public int MaxIntelligence { get; set; }
@@ -109,7 +71,11 @@ namespace WpfStrategyGame2005.MyClasses
             set
             {
                 Health = value * 2 + Strength;
-                _vitality = value;
+                //if (value >= MaxVitality)
+                //    _vitality = MaxVitality;
+                //else
+                    _vitality = value;
+                OnPropertyChanged("Vitality");
             }
         }
         public int MaxVitality { get; set; }
@@ -125,7 +91,7 @@ namespace WpfStrategyGame2005.MyClasses
         public int CritChance { get; set; }
         public int CritDamage { get; set; }
 
-        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points, Weapons weaponSlot)
+        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points)
         {
             Name = name;
             Photo = photo;
@@ -134,12 +100,17 @@ namespace WpfStrategyGame2005.MyClasses
             Intelligence = intelligence;
             Vitality = vitality;
             Points = points;
-            RightHand = weaponSlot;
         }
 
         public void TakeDamage(int damage)
         {
             Health -= damage;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

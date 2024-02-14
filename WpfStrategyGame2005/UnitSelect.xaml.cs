@@ -9,24 +9,30 @@ namespace WpfStrategyGame2005
     /// </summary>
     public partial class UnitSelect : Page
     {
+        UnitViewModel unitViewModel;
         public UnitSelect()
         {
             InitializeComponent();
+            unitViewModel = new UnitViewModel();
+            DataContext = unitViewModel;
         }
 
         private void WarriorButton_Click(object sender, RoutedEventArgs e)
         {
-            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(App.warrior));
+            unitViewModel.SelectedUnit = unitViewModel.Units[0];
+            NavigationService.Navigate(new UnitPage(unitViewModel));
         }
 
         private void RogueButton_Click(object sender, RoutedEventArgs e)
         {
-            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(App.rogue));
+            unitViewModel.SelectedUnit = unitViewModel.Units[1];
+            NavigationService.Navigate(new UnitPage(unitViewModel));
         }
 
         private void WizardButton_Click(object sender, RoutedEventArgs e)
         {
-            App.mainWindow.MainWindowFrame.Navigate(new UnitPage(App.wizard));
+            unitViewModel.SelectedUnit = unitViewModel.Units[2];
+            NavigationService.Navigate(new UnitPage(unitViewModel));
         }
     }
 }

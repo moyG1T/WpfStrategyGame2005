@@ -7,8 +7,8 @@ namespace WpfStrategyGame2005.MyClasses
         private int _dexterity;
         private int _intelligence;
         private int _vitality;
-        public Rogue(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points, Weapons weapons) :
-            base(name, photo, strength, dexterity, intelligence, vitality, points, weapons)
+        public Rogue(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points) :
+            base(name, photo, strength, dexterity, intelligence, vitality, points)
         {
             MaxStrength = 250;
             MaxDexterity = 80;
@@ -24,7 +24,10 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 Health = (int)(Vitality * 2 + value * 0.5);
                 PhysicalDamage = (int)(value * 0.5 + Dexterity * 0.5);
-                _strength = value;
+                //if (value >= MaxStrength)
+                //    _strength = MaxStrength;
+                //else
+                    _strength = value;
             }
         }
 
@@ -37,7 +40,10 @@ namespace WpfStrategyGame2005.MyClasses
                 Armor = (int)(value * 1.5);
                 CritChance = (int)(value * 0.2);
                 CritDamage = (int)(value * 0.1);
-                _dexterity = value;
+                //if (value >= MaxDexterity)
+                //    _dexterity = MaxDexterity;
+                //else
+                    _dexterity = value;
             }
         }
 
@@ -49,7 +55,10 @@ namespace WpfStrategyGame2005.MyClasses
                 Mana = (int)(value * 1.2);
                 MagicDamage = (int)(value * 0.2);
                 MagicArmor = (int)(value * 0.5);
-                _intelligence = value;
+                //if (value >= MaxIntelligence)
+                //    _intelligence = MaxIntelligence;
+                //else
+                    _intelligence = value;
             }
         }
 
@@ -59,7 +68,10 @@ namespace WpfStrategyGame2005.MyClasses
             set
             {
                 Health = (int)(value * 1.5 + Strength);
-                _vitality = value;
+                //if (value >= MaxVitality)
+                //    _vitality = MaxVitality;
+                //else
+                    _vitality = value;
             }
         }
     }

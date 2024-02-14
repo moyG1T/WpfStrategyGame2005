@@ -7,8 +7,8 @@ namespace WpfStrategyGame2005.MyClasses
         private int _intelligence;
         private int _vitality;
 
-        public Wizard(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points, Weapons weapons) :
-            base(name, photo, strength, dexterity, intelligence, vitality, points, weapons)
+        public Wizard(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points) :
+            base(name, photo, strength, dexterity, intelligence, vitality, points)
         {
             MaxStrength = 250;
             MaxDexterity = 80;
@@ -24,7 +24,10 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 Health = (int)(Vitality * 1.4 + value * 0.2);
                 PhysicalDamage = (int)(value * 0.5);
-                _strength = value;
+                //if (value >= MaxStrength)
+                //    _strength = MaxStrength;
+                //else
+                    _strength = value;
             }
         }
 
@@ -37,7 +40,10 @@ namespace WpfStrategyGame2005.MyClasses
                 Mana = (int)(value * 1.5);
                 MagicDamage = value;
                 MagicArmor = value;
-                _intelligence = value;
+                //if (value >= MaxIntelligence)
+                //    _intelligence = MaxIntelligence;
+                //else
+                    _intelligence = value;
             }
         }
 
@@ -47,7 +53,10 @@ namespace WpfStrategyGame2005.MyClasses
             set
             {
                 Health = (int)(value * 1.4 + Strength * 0.2);
-                _vitality = value;
+                //if (value >= MaxVitality)
+                //    _vitality = MaxVitality;
+                //else
+                    _vitality = value;
             }
         }
     }

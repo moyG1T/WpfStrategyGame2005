@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="MyClasses\Rogue.cs" />
     <Compile Include="MyClasses\Unit.cs" />
+    <Compile Include="MyClasses\UnitViewModel.cs" />
     <Compile Include="MyClasses\Warrior.cs" />
     <Compile Include="MyClasses\Wizard.cs" />
     <Compile Include="MyInterfaces\IAttack.cs" />

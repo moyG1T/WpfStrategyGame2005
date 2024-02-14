@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfStrategyGame2005"
+      xmlns:local="clr-namespace:WpfStrategyGame2005" xmlns:myclasses="clr-namespace:WpfStrategyGame2005.MyClasses" d:DataContext="{d:DesignInstance Type=myclasses:UnitViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="UnitPage">
@@ -22,26 +22,42 @@
                 <Border HorizontalAlignment="Center" Padding="20" VerticalAlignment="Center" Background="White" CornerRadius="15" Opacity="0.9">
                     <StackPanel Width="430">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                            <TextBlock x:Name="NameText" HorizontalAlignment="Center" Margin="0 0 10 0">ВОИН</TextBlock>
-                            <TextBlock x:Name="ExpText" HorizontalAlignment="Center">(**/**)</TextBlock>
+                            <TextBlock x:Name="NameText" Text="{Binding SelectedUnit.Name}" HorizontalAlignment="Center" Margin="0 0 10 0"></TextBlock>
+                            <TextBlock x:Name="ExpText" Text="{Binding SelectedUnit.Exp}" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                         <DockPanel>
                             <StackPanel Width="400">
                                 <DockPanel Height="25" Margin="0 0 0 3">
                                     <TextBlock HorizontalAlignment="Left">Сила</TextBlock>
-                                    <TextBlock x:Name="StrengthText" HorizontalAlignment="Right">**/**</TextBlock>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <TextBlock x:Name="Str" Text="{Binding SelectedUnit.Strength}"></TextBlock>
+                                        <TextBlock Text="/"></TextBlock>
+                                        <TextBlock Text="{Binding SelectedUnit.MaxStrength}"></TextBlock>
+                                    </StackPanel>
                                 </DockPanel>
                                 <DockPanel Height="25" Margin="0 0 0 3">
                                     <TextBlock HorizontalAlignment="Left">Ловкость</TextBlock>
-                                    <TextBlock x:Name="DexterityText" HorizontalAlignment="Right">**/**</TextBlock>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SelectedUnit.Dexterity}"></TextBlock>
+                                        <TextBlock Text="/"></TextBlock>
+                                        <TextBlock Text="{Binding SelectedUnit.MaxDexterity}"></TextBlock>
+                                    </StackPanel>
                                 </DockPanel>
                                 <DockPanel Height="25" Margin="0 0 0 3">
                                     <TextBlock HorizontalAlignment="Left">Интеллект</TextBlock>
-                                    <TextBlock x:Name="IntelligenceText" HorizontalAlignment="Right">**/**</TextBlock>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SelectedUnit.Intelligence}"></TextBlock>
+                                        <TextBlock Text="/"></TextBlock>
+                                        <TextBlock Text="{Binding SelectedUnit.MaxIntelligence}"></TextBlock>
+                                    </StackPanel>
                                 </DockPanel>
                                 <DockPanel Height="25">
                                     <TextBlock HorizontalAlignment="Left">Живучесть</TextBlock>
-                                    <TextBlock x:Name="VitalityText" HorizontalAlignment="Right">**/**</TextBlock>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SelectedUnit.Vitality}"></TextBlock>
+                                        <TextBlock Text="/"></TextBlock>
+                                        <TextBlock Text="{Binding SelectedUnit.MaxVitality}"></TextBlock>
+                                    </StackPanel>
                                 </DockPanel>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -54,40 +70,40 @@
                         <StackPanel Width="400" HorizontalAlignment="Left">
                             <DockPanel Margin="0 15 0 0">
                                 <TextBlock HorizontalAlignment="Left">Здоровье</TextBlock>
-                                <TextBlock x:Name ="HealthText"  HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.Health}"></TextBlock>
                             </DockPanel>
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Мана</TextBlock>
-                                <TextBlock x:Name="ManaText" HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.Mana}"></TextBlock>
                             </DockPanel>
 
                             <DockPanel Margin="0 15 0 0">
                                 <TextBlock HorizontalAlignment="Left">Физический урон</TextBlock>
-                                <TextBlock x:Name="PhysicalDamageText" HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.PhysicalDamage}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Броня</TextBlock>
-                                <TextBlock x:Name="ArmorText" HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.Armor}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Магический урон</TextBlock>
-                                <TextBlock x:Name="MagicDamageText"  HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.MagicDamage}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Магическая защита</TextBlock>
-                                <TextBlock x:Name="MagicArmorText" HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.MagicArmor}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Шанс крита</TextBlock>
-                                <TextBlock x:Name="CritChanceText" HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.CritChance}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Критический урон</TextBlock>
-                                <TextBlock x:Name="CritDamageText" HorizontalAlignment="Right">**/**</TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.CritDamage}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                             <DockPanel Margin="0 15 0 0">
                                 <TextBlock HorizontalAlignment="Left">Свободные очки навыков</TextBlock>
-                                <TextBlock x:Name="SkillPoints" HorizontalAlignment="Right"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.Points}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                         </StackPanel>
                         <Button x:Name="Back" Click="Back_Click">Назад</Button>
