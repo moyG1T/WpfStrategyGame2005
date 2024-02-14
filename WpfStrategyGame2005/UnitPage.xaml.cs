@@ -23,8 +23,6 @@ namespace WpfStrategyGame2005
             UnitImage.Source = imageSource;
 
             DataContext = unitViewModel;
-
-            Str.Text = _unitViewModel.SelectedUnit.Strength.ToString();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

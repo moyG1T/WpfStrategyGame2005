@@ -42,7 +42,7 @@ namespace WpfStrategyGame2005.MyClasses
                 //if (value >= MaxDexterity)
                 //    _dexterity = MaxDexterity;
                 //else
-                    _dexterity = value;
+                _dexterity = value;
                 OnPropertyChanged("Dexterity");
             }
         }
@@ -59,7 +59,7 @@ namespace WpfStrategyGame2005.MyClasses
                 //if (value >= MaxIntelligence)
                 //    _intelligence = MaxIntelligence;
                 //else
-                    _intelligence = value;
+                _intelligence = value;
                 OnPropertyChanged("Intelligence");
             }
         }
@@ -74,7 +74,7 @@ namespace WpfStrategyGame2005.MyClasses
                 //if (value >= MaxVitality)
                 //    _vitality = MaxVitality;
                 //else
-                    _vitality = value;
+                _vitality = value;
                 OnPropertyChanged("Vitality");
             }
         }
@@ -91,7 +91,36 @@ namespace WpfStrategyGame2005.MyClasses
         public int CritChance { get; set; }
         public int CritDamage { get; set; }
 
-        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points)
+        private Weapon leftHand;
+        private Weapon rightHand;
+
+        public Weapon LeftHand
+        {
+            get
+            {
+                return leftHand;
+            }
+            set
+            {
+                leftHand = value;
+                OnPropertyChanged("LeftHand");
+            }
+        }
+        public Weapon RightHand
+        {
+            get
+            {
+                return rightHand;
+            }
+            set
+            {
+                MessageBox.Show("123");
+                rightHand = value;
+                OnPropertyChanged("RightHand");
+            }
+        }
+
+        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, Weapon leftHand, Weapon rightHand, int points)
         {
             Name = name;
             Photo = photo;
@@ -99,6 +128,8 @@ namespace WpfStrategyGame2005.MyClasses
             Dexterity = dexterity;
             Intelligence = intelligence;
             Vitality = vitality;
+            LeftHand = leftHand;
+            RightHand = rightHand;
             Points = points;
         }
 

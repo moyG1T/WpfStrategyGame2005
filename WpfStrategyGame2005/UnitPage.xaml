@@ -110,14 +110,28 @@
                     </StackPanel>
                 </Border>
                 <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
-                    <StackPanel>
-                        <RadioButton x:Name="Unload" Checked="Unload_Checked">Убрать оружие</RadioButton>
-                        <RadioButton x:Name="LoadStick" Checked="LoadStick_Checked">Палка-копалка</RadioButton>
-                        <RadioButton x:Name="LoadDagger" Checked="LoadDagger_Checked">Точка-заточка</RadioButton>
-                        <RadioButton x:Name="LoadSword" Checked="LoadSword_Checked">Меч-тебе-всечь</RadioButton>
-                        <RadioButton x:Name="LoadAxe" Checked="LoadAxe_Checked">Топорик-киркорик</RadioButton>
-                        <RadioButton x:Name="LoadHammer" Checked="LoadHammer_Checked">Молоток-прямоток</RadioButton>
-                    </StackPanel>
+                    <DockPanel Width="200">
+                        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Правая рука</TextBlock>
+                        <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.RightHand}" DisplayMemberPath="Name" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top"></ListView>
+                        <WrapPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                            <RadioButton>Обычная</RadioButton>
+                            <RadioButton>Зачар</RadioButton>
+                            <RadioButton>Редкая</RadioButton>
+                        </WrapPanel>
+                        <TextBlock Text="{Binding SelectedUnit.RightHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
+                    </DockPanel>
+                </Border>
+                <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                    <DockPanel Width="200">
+                        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Левая рука</TextBlock>
+                        <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.LeftHand}" DisplayMemberPath="Name" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top"></ListView>
+                        <WrapPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                            <RadioButton>Обычная</RadioButton>
+                            <RadioButton>Зачар</RadioButton>
+                            <RadioButton>Редкая</RadioButton>
+                        </WrapPanel>
+                        <TextBlock Text="{Binding SelectedUnit.LeftHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
+                    </DockPanel>
                 </Border>
             </StackPanel>
         </ScrollViewer>
