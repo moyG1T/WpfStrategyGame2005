@@ -9,7 +9,7 @@
       Title="UnitSelect">
 
     <Grid>
-        <Image x:Name="Background" Source="/Resources/asd.png" Stretch="Fill"></Image>
+        <Image x:Name="BackgroundImage" Source="/Resources/asd.png" Stretch="Fill"></Image>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="WarriorButton" Click="WarriorButton_Click" Content="Воин"></Button>
             <Button x:Name="RogueButton" Click="RogueButton_Click">Жулик</Button>

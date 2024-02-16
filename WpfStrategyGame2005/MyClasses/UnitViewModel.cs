@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 
 namespace WpfStrategyGame2005.MyClasses
 {
@@ -21,7 +20,6 @@ namespace WpfStrategyGame2005.MyClasses
             }
         }
 
-
         public ObservableCollection<Unit> Units { get; set; }
         public ObservableCollection<Weapon> Weapons { get; set; }
 
@@ -29,20 +27,20 @@ namespace WpfStrategyGame2005.MyClasses
         {
             Weapons = new ObservableCollection<Weapon>()
             {
-                new Weapon("Кулаки", Weapon.WeaponType.None, true, true),
-                new Weapon("Щит", Weapon.WeaponType.None, false, false),
-                new Weapon("Палка", Weapon.WeaponType.None, false, false),
-                new Weapon("Кинжал", Weapon.WeaponType.None,  true, false),
-                new Weapon("Меч", Weapon.WeaponType.None, false, true),
-                new Weapon("Топор",Weapon.WeaponType.None,  false, true),
-                new Weapon("Кувалда", Weapon.WeaponType.None, false, false),
+                new Weapon("Кулаки", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Щит", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Палка", Weapon.WeaponType.None, 0, 0, 15, 0, 0, 50, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Кинжал", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Меч", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Топор",Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Кувалда", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
             };
 
             Units = new ObservableCollection<Unit>()
             {
-                new Warrior("Воин", "/Resources/cherry.jpg", 30, 15, 10, 25, Weapons[0], Weapons[0], 50),
-                new Rogue("Жулик", "/Resources/rogue.jpg", 20, 30, 15, 20, Weapons[0], Weapons[0], 50),
-                new Wizard("Волшебник", "/Resources/mag.png", 15, 20, 35, 15, Weapons[0], Weapons[0], 50),
+                new Warrior("Воин", "/Resources/cherry.jpg", 30, 15, 10, 25, 50),
+                new Rogue("Жулик", "/Resources/rogue.jpg", 20, 30, 15, 20, 50),
+                new Wizard("Волшебник", "/Resources/mag.png", 15, 20, 35, 15, 50),
             };
         }
 

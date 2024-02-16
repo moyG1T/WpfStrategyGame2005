@@ -7,13 +7,9 @@ namespace WpfStrategyGame2005.MyClasses
         private int _intelligence;
         private int _vitality;
 
-        public Wizard(string name, string photo, int strength, int dexterity, int intelligence, int vitality, Weapon leftHand, Weapon righthand, int points) :
-            base(name, photo, strength, dexterity, intelligence, vitality, leftHand, righthand, points)
+        public Wizard(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int points)
+            : base(name, photo, strength, dexterity, intelligence, vitality, 45, 80, 250, 70, points)
         {
-            MaxStrength = 250;
-            MaxDexterity = 80;
-            MaxIntelligence = 50;
-            MaxVitality = 100;
             Points = 50;
         }
 
@@ -24,9 +20,9 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 Health = (int)(Vitality * 1.4 + value * 0.2);
                 PhysicalDamage = (int)(value * 0.5);
-                //if (value >= MaxStrength)
-                //    _strength = MaxStrength;
-                //else
+                if (value >= MaxStrength)
+                    _strength = MaxStrength;
+                else
                     _strength = value;
             }
         }
@@ -39,10 +35,10 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 Mana = (int)(value * 1.5);
                 MagicDamage = value;
-                MagicArmor = value;
-                //if (value >= MaxIntelligence)
-                //    _intelligence = MaxIntelligence;
-                //else
+                //MagicArmor = value;
+                ////if (value >= MaxIntelligence)
+                ////    _intelligence = MaxIntelligence;
+                ////else
                     _intelligence = value;
             }
         }
@@ -53,9 +49,9 @@ namespace WpfStrategyGame2005.MyClasses
             set
             {
                 Health = (int)(value * 1.4 + Strength * 0.2);
-                //if (value >= MaxVitality)
-                //    _vitality = MaxVitality;
-                //else
+                if (value >= MaxVitality)
+                    _vitality = MaxVitality;
+                else
                     _vitality = value;
             }
         }

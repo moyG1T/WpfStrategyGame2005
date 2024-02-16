@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using WpfStrategyGame2005.MyInterfaces;
@@ -12,7 +15,6 @@ namespace WpfStrategyGame2005.MyClasses
         private int _intelligence;
         private int _vitality;
 
-
         public string Name { get; set; }
         public string Photo { get; set; }
         public int Points { get; set; }
@@ -25,11 +27,15 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 Health = Vitality * 2 + value;
                 PhysicalDamage = value;
-                _strength = value;
+                if (value >= MaxStrength)
+                    _strength = MaxStrength;
+                else
+                    _strength = value;
                 OnPropertyChanged("Strength");
             }
         }
-        public int MaxStrength { get; set; }
+        private int maxStrength;
+        public int MaxStrength { get => maxStrength; }
 
         public virtual int Dexterity
         {
@@ -39,14 +45,15 @@ namespace WpfStrategyGame2005.MyClasses
                 Armor = value;
                 CritChance = (int)(value * 0.2);
                 CritDamage = (int)(value * 0.1);
-                //if (value >= MaxDexterity)
-                //    _dexterity = MaxDexterity;
-                //else
-                _dexterity = value;
+                if (value >= MaxDexterity)
+                    _dexterity = MaxDexterity;
+                else
+                    _dexterity = value;
                 OnPropertyChanged("Dexterity");
             }
         }
-        public int MaxDexterity { get; set; }
+        private int maxDexterity;
+        public int MaxDexterity { get => maxDexterity; }
 
         public virtual int Intelligence
         {
@@ -56,14 +63,15 @@ namespace WpfStrategyGame2005.MyClasses
                 Mana = value;
                 MagicDamage = (int)(value * 0.2);
                 MagicArmor = (int)(value * 0.5);
-                //if (value >= MaxIntelligence)
-                //    _intelligence = MaxIntelligence;
-                //else
-                _intelligence = value;
+                if (value >= MaxIntelligence)
+                    _intelligence = MaxIntelligence;
+                else
+                    _intelligence = value;
                 OnPropertyChanged("Intelligence");
             }
         }
-        public int MaxIntelligence { get; set; }
+        private int maxIntelligence;
+        public int MaxIntelligence { get => maxIntelligence; }
 
         public virtual int Vitality
         {
@@ -71,35 +79,23 @@ namespace WpfStrategyGame2005.MyClasses
             set
             {
                 Health = value * 2 + Strength;
-                //if (value >= MaxVitality)
-                //    _vitality = MaxVitality;
-                //else
-                _vitality = value;
+                if (value >= MaxVitality)
+                    _vitality = MaxVitality;
+                else
+                    _vitality = value;
                 OnPropertyChanged("Vitality");
             }
         }
-        public int MaxVitality { get; set; }
+        private int maxVitality;
+        public int MaxVitality { get => maxVitality; }
 
-
-
-        public int Health { get; set; }
-        public int Mana { get; set; }
-        public int PhysicalDamage { get; set; }
-        public int Armor { get; set; }
-        public int MagicDamage { get; set; }
-        public int MagicArmor { get; set; }
-        public int CritChance { get; set; }
-        public int CritDamage { get; set; }
 
         private Weapon leftHand;
         private Weapon rightHand;
 
         public Weapon LeftHand
         {
-            get
-            {
-                return leftHand;
-            }
+            get { return leftHand; }
             set
             {
                 leftHand = value;
@@ -108,34 +104,101 @@ namespace WpfStrategyGame2005.MyClasses
         }
         public Weapon RightHand
         {
-            get
-            {
-                return rightHand;
-            }
+            get { return rightHand; }
             set
             {
-                MessageBox.Show("123");
                 rightHand = value;
+                if (equippedWeapon != null)
+                    GetUnarmed();
+                GetArmed(value);
                 OnPropertyChanged("RightHand");
             }
         }
 
-        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, Weapon leftHand, Weapon rightHand, int points)
+        private Weapon equippedWeapon;
+
+        public void GetArmed(Weapon weapon)
+        {
+            if (weapon.Name == "Палка")
+            {
+                Intelligence += weapon.IntelligenceBonus;
+                Mana += weapon.ManaBonus;
+                equippedWeapon = weapon;
+            }
+        }
+
+        public void GetUnarmed()
+        {
+            Intelligence -= equippedWeapon.IntelligenceBonus;
+            equippedWeapon = null;
+        }
+
+        public int health;
+        public int mana;
+        public int physicalDamage;
+        public int armor;
+        public int magicDamage;
+        public int magicArmor;
+        public int critChance;
+        public int critDamage;
+
+        public int Health
+        {
+            get { return health; }
+            set { health = value; OnPropertyChanged("Health"); }
+        }
+        public int Mana
+        {
+            get { return mana; }
+            set { mana = value; OnPropertyChanged("Mana"); }
+        }
+        public int PhysicalDamage
+        {
+            get { return physicalDamage; }
+            set { physicalDamage = value; OnPropertyChanged("PhysicalDamage"); }
+        }
+        public int Armor
+        {
+            get { return armor; }
+            set { armor = value; OnPropertyChanged("Armor"); }
+        }
+        public int MagicDamage
+        {
+            get { return magicDamage; }
+            set { magicDamage = value; OnPropertyChanged("MagicDamage"); }
+        }
+        public int MagicArmor
+        {
+            get { return magicArmor; }
+            set { magicArmor = value; OnPropertyChanged("MagicArmor"); }
+        }
+        public int CritChance
+        {
+            get { return critChance; }
+            set { critChance = value; OnPropertyChanged("CritChance"); }
+        }
+        public int CritDamage
+        {
+            get { return critDamage; }
+            set { critDamage = value; OnPropertyChanged("CritDamage"); }
+        }
+
+
+        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int maxStrength, int maxDexterity, int maxIntelligence, int maxVitality, int points)
         {
             Name = name;
             Photo = photo;
+
+            this.maxStrength = maxStrength;
+            this.maxDexterity = maxDexterity;
+            this.maxIntelligence = maxIntelligence;
+            this.maxVitality = maxVitality;
+
             Strength = strength;
             Dexterity = dexterity;
             Intelligence = intelligence;
             Vitality = vitality;
-            LeftHand = leftHand;
-            RightHand = rightHand;
             Points = points;
-        }
-
-        public void TakeDamage(int damage)
-        {
-            Health -= damage;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

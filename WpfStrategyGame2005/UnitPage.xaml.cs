@@ -17,12 +17,11 @@ namespace WpfStrategyGame2005
         public UnitPage(UnitViewModel _unitViewModel)
         {
             InitializeComponent();
+
             unitViewModel = _unitViewModel;
-
-            ImageSource imageSource = new BitmapImage(new Uri(_unitViewModel.SelectedUnit.Photo, UriKind.Relative));
-            UnitImage.Source = imageSource;
-
             DataContext = unitViewModel;
+
+            UnitImage.Source = new BitmapImage(new Uri(unitViewModel.SelectedUnit.Photo, UriKind.Relative));
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

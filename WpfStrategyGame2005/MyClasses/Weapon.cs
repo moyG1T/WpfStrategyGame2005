@@ -11,8 +11,20 @@ namespace WpfStrategyGame2005.MyClasses
     {
         public string Name { get; set; }
         public WeaponType Type { get; set; }
-        public bool IsDual { get; set; }
-        public bool CanHandleShield { get; set; }
+
+        public int StrengthBonus { get; set; }
+        public int DexterityBonus { get; set; }
+        public int IntelligenceBonus { get; set; }
+        public int VitalityBonus { get; set; }
+
+        public int HealthBonus { get; set; }
+        public int ManaBonus { get; set; }
+        public int PhysicalDamageBonus { get; set; }
+        public int ArmorBonus { get; set; }
+        public int MagicDamageBonus { get; set; }
+        public int MagicArmorBonus { get; set; }
+        public int CritChanceBonus { get; set; }
+        public int CritDamageBonus { get; set; }
 
         public enum WeaponType
         {
@@ -21,18 +33,24 @@ namespace WpfStrategyGame2005.MyClasses
             Rare
         }
 
-        public Weapon(string name, WeaponType rarity, bool isDual, bool canHandleShield)
+        public Weapon(string name, WeaponType type, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus, 
+            int healthBonus, int manaBonus,
+            int physicalDamageBonus, int armorBonus, int magicDamageBonus, int magicArmorBonus, int critChanceBonus, int critDamageBonus)
         {
             Name = name;
-            Type = rarity;
-            IsDual = isDual;
-            CanHandleShield = canHandleShield;
-        }
-
-        public Unit EquipUnit(Unit unit, int pDamage, int health, int intel, int cChange, int cDamage)
-        {
-
-            return unit;
+            Type = type;
+            StrengthBonus = strengthBonus;
+            DexterityBonus = dexterityBonus;
+            IntelligenceBonus = intelligenceBonus;
+            VitalityBonus = vitalityBonus;
+            HealthBonus = healthBonus;
+            ManaBonus = manaBonus;
+            PhysicalDamageBonus = physicalDamageBonus;
+            ArmorBonus = armorBonus;
+            MagicDamageBonus = magicDamageBonus;
+            MagicArmorBonus = magicArmorBonus;
+            CritChanceBonus = critChanceBonus;
+            CritDamageBonus = critDamageBonus;
         }
     }
 }

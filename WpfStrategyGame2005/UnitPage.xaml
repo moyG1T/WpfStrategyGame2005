@@ -70,11 +70,11 @@
                         <StackPanel Width="400" HorizontalAlignment="Left">
                             <DockPanel Margin="0 15 0 0">
                                 <TextBlock HorizontalAlignment="Left">Здоровье</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.Health}"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.Health}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
                             <DockPanel>
                                 <TextBlock HorizontalAlignment="Left">Мана</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.Mana}"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.Mana}" HorizontalAlignment="Right"></TextBlock>
                             </DockPanel>
 
                             <DockPanel Margin="0 15 0 0">
