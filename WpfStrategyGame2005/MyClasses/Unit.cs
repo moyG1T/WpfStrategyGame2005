@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -80,9 +81,22 @@ namespace WpfStrategyGame2005.MyClasses
         private int maxVitality;
         public int MaxVitality { get => maxVitality; }
 
+        private ObservableCollection<Weapon> allowedWeapons;
+        public ObservableCollection<Weapon> AllowedWeapons
+        {
+            get => allowedWeapons;
+            set
+            {
+                allowedWeapons = value;
+                OnPropertyChanged("AllowedWeapons");
+            }
+        }
 
         private Weapon leftHand;
         private Weapon rightHand;
+
+        private Weapon leftHandBackup;
+        private Weapon rightHandBackup;
 
         public Weapon LeftHand
         {
@@ -90,6 +104,12 @@ namespace WpfStrategyGame2005.MyClasses
             set
             {
                 leftHand = value;
+
+                if (leftHandBackup != null)
+                    GetUnarmed(ref leftHandBackup);
+
+                GetArmed(value, ref leftHandBackup);
+
                 OnPropertyChanged("LeftHand");
             }
         }
@@ -99,29 +119,56 @@ namespace WpfStrategyGame2005.MyClasses
             set
             {
                 rightHand = value;
-                if (equippedWeapon != null)
-                    GetUnarmed();
-                GetArmed(value);
+
+                if (rightHandBackup != null)
+                    GetUnarmed(ref rightHandBackup);
+
+                GetArmed(value, ref rightHandBackup);
+
                 OnPropertyChanged("RightHand");
             }
         }
 
-        private Weapon equippedWeapon;
-
-        private void GetArmed(Weapon weapon)
+        private void GetArmed(Weapon weapon, ref Weapon handBackup)
         {
-            int _dexterity;
-            if (weapon.StrengthBonus + Strength > MaxStrength)
+            handBackup = weapon;
+            if (Strength + weapon.StrengthBonus >= MaxStrength)
             {
-                weapon.StrengthBonus = weapon.StrengthBonus + Strength - MaxStrength;
+                handBackup.StrengthBonus = MaxStrength - Strength;
             }
-            else if (weapon.DexterityBonus + Dexterity > MaxDexterity)
+            else
             {
-                _dexterity = weapon.DexterityBonus + Dexterity - MaxDexterity;
-                Dexterity += weapon.DexterityBonus;
-                weapon.DexterityBonus = _dexterity;
+                handBackup.StrengthBonus = weapon.StrengthBonus;
             }
-            Strength += weapon.StrengthBonus;
+
+            if (Dexterity + weapon.DexterityBonus >= MaxDexterity)
+            {
+                handBackup.DexterityBonus = MaxDexterity - Dexterity;
+            }
+            else
+            {
+                handBackup.DexterityBonus = weapon.DexterityBonus;
+            }
+
+            if (Intelligence + weapon.IntelligenceBonus >= MaxIntelligence)
+            {
+                handBackup.IntelligenceBonus = MaxIntelligence - Intelligence;
+            }
+            else
+            {
+                handBackup.IntelligenceBonus = weapon.IntelligenceBonus;
+            }
+
+            if (Vitality + weapon.VitalityBonus >= MaxVitality)
+            {
+                handBackup.VitalityBonus = MaxVitality - Vitality;
+            }
+            else
+            {
+                handBackup.VitalityBonus = weapon.VitalityBonus;
+            }
+
+            Strength += weapon.StrengthBonus; // вместо сложения идет вычитание
             Dexterity += weapon.DexterityBonus;
             Intelligence += weapon.IntelligenceBonus;
             Vitality += weapon.VitalityBonus;
@@ -135,38 +182,36 @@ namespace WpfStrategyGame2005.MyClasses
             MagicArmor += weapon.MagicArmorBonus;
             CritChance = (int)(CritChance * weapon.CritChanceBonus);
             CritDamage = (int)(CritDamage * weapon.CritDamageBonus);
-
-            equippedWeapon = weapon;
         }
 
-        private void GetUnarmed()
+        private void GetUnarmed(ref Weapon handBackup)
         {
-            Strength -= equippedWeapon.StrengthBonus;
-            Dexterity -= equippedWeapon.DexterityBonus;
-            Intelligence -= equippedWeapon.IntelligenceBonus;
-            Vitality -= equippedWeapon.VitalityBonus;
+            Strength -= handBackup.StrengthBonus;
+            Dexterity -= handBackup.DexterityBonus;
+            Intelligence -= handBackup.IntelligenceBonus;
+            Vitality -= handBackup.VitalityBonus;
 
-            Health -= equippedWeapon.HealthBonus;
-            Mana -= equippedWeapon.ManaBonus;
+            Health -= handBackup.HealthBonus;
+            Mana -= handBackup.ManaBonus;
 
-            PhysicalDamage -= equippedWeapon.PhysicalDamageBonus;
-            Armor -= equippedWeapon.ArmorBonus;
-            MagicDamage -= equippedWeapon.MagicDamageBonus;
-            MagicArmor -= equippedWeapon.MagicArmorBonus;
-            CritChance = (int)(CritChance / equippedWeapon.CritChanceBonus);
-            CritDamage = (int)(CritDamage / equippedWeapon.CritDamageBonus);
+            PhysicalDamage -= handBackup.PhysicalDamageBonus;
+            Armor -= handBackup.ArmorBonus;
+            MagicDamage -= handBackup.MagicDamageBonus;
+            MagicArmor -= handBackup.MagicArmorBonus;
+            CritChance = (int)(CritChance / handBackup.CritChanceBonus);
+            CritDamage = (int)(CritDamage / handBackup.CritDamageBonus);
 
-            equippedWeapon = null;
+            handBackup = null;
         }
 
-        public int health;
-        public int mana;
-        public int physicalDamage;
-        public int armor;
-        public int magicDamage;
-        public int magicArmor;
-        public int critChance;
-        public int critDamage;
+        private int health;
+        private int mana;
+        private int physicalDamage;
+        private int armor;
+        private int magicDamage;
+        private int magicArmor;
+        private int critChance;
+        private int critDamage;
 
         public int Health
         {
@@ -210,10 +255,11 @@ namespace WpfStrategyGame2005.MyClasses
         }
 
 
-        public Unit(string name, string photo, int strength, int dexterity, int intelligence, int vitality, int maxStrength, int maxDexterity, int maxIntelligence, int maxVitality, int points)
+        public Unit(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int maxStrength, int maxDexterity, int maxIntelligence, int maxVitality, int points)
         {
             Name = name;
             Photo = photo;
+            AllowedWeapons = weapons;
 
             this.maxStrength = maxStrength;
             this.maxDexterity = maxDexterity;

@@ -114,7 +114,7 @@
                     <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
                         <DockPanel Width="200">
                             <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Правая рука</TextBlock>
-                            <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.RightHand}"
+                            <ListView ItemsSource="{Binding SelectedUnit.AllowedWeapons}" SelectedItem="{Binding SelectedUnit.RightHand}"
                                 DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                                 <ListView.View>
                                     <GridView>
@@ -131,19 +131,29 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-                            <ListView ItemsSource="{Binding Charities}" SelectedItem="{Binding SelectedUnit.RightHand.Type}" DisplayMemberPath="Name" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left"></ListView>
                             <TextBlock Text="{Binding SelectedUnit.RightHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
                         </DockPanel>
                     </Border>
                     <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
                         <DockPanel Width="200">
                             <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Левая рука</TextBlock>
-                            <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.LeftHand}" DisplayMemberPath="Name" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top"></ListView>
-                            <WrapPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                                <RadioButton>Обычная</RadioButton>
-                                <RadioButton>Зачар</RadioButton>
-                                <RadioButton>Редкая</RadioButton>
-                            </WrapPanel>
+                            <ListView ItemsSource="{Binding SelectedUnit.AllowedWeapons}" SelectedItem="{Binding SelectedUnit.LeftHand}"
+                                      DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <ComboBox ItemsSource="{Binding Types}" DisplayMemberPath="Name" SelectedItem="{Binding Type}" IsEditable="True" Width="75"></ComboBox>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
                             <TextBlock Text="{Binding SelectedUnit.LeftHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
                         </DockPanel>
                     </Border>
