@@ -19,5 +19,8 @@
             <Setter Property="Margin" Value="5"></Setter>
         </Style>
 
+        <Style TargetType="StackPanel" x:Key="Bonus">
+            <Setter Property="Margin" Value="5 0 5 0"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

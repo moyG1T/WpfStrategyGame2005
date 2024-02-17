@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using static WpfStrategyGame2005.MyClasses.Weapon;
 
 namespace WpfStrategyGame2005.MyClasses
 {
@@ -22,18 +24,27 @@ namespace WpfStrategyGame2005.MyClasses
 
         public ObservableCollection<Unit> Units { get; set; }
         public ObservableCollection<Weapon> Weapons { get; set; }
+        public ObservableCollection<WeaponCharity> Charities { get; set; }
 
         public UnitViewModel()
         {
+            Charities = new ObservableCollection<WeaponCharity>()
+            {
+                new WeaponCharity("Без зачарований", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0 ),
+                new WeaponCharity("Мобильность", 0, 5, 0, 5, 0, 0, 0, 0, 0, 0 ,0, 0 ),
+                new WeaponCharity("Острота", 10, 10, 0, 10, 10, 0, 0, 0, 0, 0 ,0, 0 ),
+                new WeaponCharity("Донат", 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,0, 0 ),
+            };
+
             Weapons = new ObservableCollection<Weapon>()
             {
-                new Weapon("Кулаки", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Щит", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Палка", Weapon.WeaponType.None, 0, 0, 15, 0, 0, 50, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Кинжал", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Меч", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Топор",Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Кувалда", Weapon.WeaponType.None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Кулаки",  Charities[0],Charities, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Щит",  Charities[0],Charities, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Палка",  Charities[0],Charities, 0, 0, 15, 0, 0, 50, 0, 0, 0, 0 ,1.05, 3),
+                new Weapon("Кинжал",  Charities[0],Charities, 0, 25, 0, 0, 0, 0, 15, 0, 0, 0 ,1.6, 1.7),
+                new Weapon("Меч",  Charities[0],Charities, 15, 15, 0, 0, 0, 0, 25, 0, 0, 0 ,1.35, 2.5),
+                new Weapon("Топор",Charities[0],Charities, 40, 0, 0, 0, 0, 0, 40, 0, 0, 0 ,1.2, 2.7),
+                new Weapon("Кувалда", Charities[0],Charities, 25, 0, 0, 0, 25, 0, 40, 0, 0, 0 ,1.1, 3.5),
             };
 
             Units = new ObservableCollection<Unit>()

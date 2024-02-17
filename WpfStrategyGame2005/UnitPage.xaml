@@ -11,128 +11,197 @@
     <Grid>
         <Image x:Name="UnitImage" Stretch="Fill"></Image>
         <ScrollViewer HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalScrollBarVisibility="Hidden">
-            <StackPanel Orientation="Horizontal">
-                <Border Margin="0 0 10 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
-                    <StackPanel>
-                        <Button x:Name="Plus100" Click="Plus100_Click">+100</Button>
-                        <Button x:Name="Plus1000" Click="Plus1000_Click">+1000</Button>
-                        <Button x:Name="Plus10000" Click="Plus10000_Click">+10000</Button>
-                    </StackPanel>
-                </Border>
-                <Border HorizontalAlignment="Center" Padding="20" VerticalAlignment="Center" Background="White" CornerRadius="15" Opacity="0.9">
-                    <StackPanel Width="430">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                            <TextBlock x:Name="NameText" Text="{Binding SelectedUnit.Name}" HorizontalAlignment="Center" Margin="0 0 10 0"></TextBlock>
-                            <TextBlock x:Name="ExpText" Text="{Binding SelectedUnit.Exp}" HorizontalAlignment="Center"></TextBlock>
-                        </StackPanel>
-                        <DockPanel>
-                            <StackPanel Width="400">
-                                <DockPanel Height="25" Margin="0 0 0 3">
-                                    <TextBlock HorizontalAlignment="Left">Сила</TextBlock>
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock x:Name="Str" Text="{Binding SelectedUnit.Strength}"></TextBlock>
-                                        <TextBlock Text="/"></TextBlock>
-                                        <TextBlock Text="{Binding SelectedUnit.MaxStrength}"></TextBlock>
-                                    </StackPanel>
-                                </DockPanel>
-                                <DockPanel Height="25" Margin="0 0 0 3">
-                                    <TextBlock HorizontalAlignment="Left">Ловкость</TextBlock>
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SelectedUnit.Dexterity}"></TextBlock>
-                                        <TextBlock Text="/"></TextBlock>
-                                        <TextBlock Text="{Binding SelectedUnit.MaxDexterity}"></TextBlock>
-                                    </StackPanel>
-                                </DockPanel>
-                                <DockPanel Height="25" Margin="0 0 0 3">
-                                    <TextBlock HorizontalAlignment="Left">Интеллект</TextBlock>
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SelectedUnit.Intelligence}"></TextBlock>
-                                        <TextBlock Text="/"></TextBlock>
-                                        <TextBlock Text="{Binding SelectedUnit.MaxIntelligence}"></TextBlock>
-                                    </StackPanel>
-                                </DockPanel>
-                                <DockPanel Height="25">
-                                    <TextBlock HorizontalAlignment="Left">Живучесть</TextBlock>
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SelectedUnit.Vitality}"></TextBlock>
-                                        <TextBlock Text="/"></TextBlock>
-                                        <TextBlock Text="{Binding SelectedUnit.MaxVitality}"></TextBlock>
-                                    </StackPanel>
-                                </DockPanel>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                                <Button x:Name="StrengthUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
-                                <Button x:Name="DexteryUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
-                                <Button x:Name="IntelligenceUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
-                                <Button x:Name="VitalityUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0" Content="+" Click="Up_Click"></Button>
-                            </StackPanel>
-                        </DockPanel>
-                        <StackPanel Width="400" HorizontalAlignment="Left">
-                            <DockPanel Margin="0 15 0 0">
-                                <TextBlock HorizontalAlignment="Left">Здоровье</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.Health}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
-                            <DockPanel>
-                                <TextBlock HorizontalAlignment="Left">Мана</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.Mana}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
+            <StackPanel Orientation="Vertical">
 
-                            <DockPanel Margin="0 15 0 0">
-                                <TextBlock HorizontalAlignment="Left">Физический урон</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.PhysicalDamage}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
-                            <DockPanel>
-                                <TextBlock HorizontalAlignment="Left">Броня</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.Armor}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
-                            <DockPanel>
-                                <TextBlock HorizontalAlignment="Left">Магический урон</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.MagicDamage}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
-                            <DockPanel>
-                                <TextBlock HorizontalAlignment="Left">Магическая защита</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.MagicArmor}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
-                            <DockPanel>
-                                <TextBlock HorizontalAlignment="Left">Шанс крита</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.CritChance}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
-                            <DockPanel>
-                                <TextBlock HorizontalAlignment="Left">Критический урон</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.CritDamage}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
-                            <DockPanel Margin="0 15 0 0">
-                                <TextBlock HorizontalAlignment="Left">Свободные очки навыков</TextBlock>
-                                <TextBlock Text="{Binding SelectedUnit.Points}" HorizontalAlignment="Right"></TextBlock>
-                            </DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Border Margin="0 0 10 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                        <StackPanel>
+                            <Button x:Name="Plus100" Click="Plus100_Click">+100</Button>
+                            <Button x:Name="Plus1000" Click="Plus1000_Click">+1000</Button>
+                            <Button x:Name="Plus10000" Click="Plus10000_Click">+10000</Button>
                         </StackPanel>
-                        <Button x:Name="Back" Click="Back_Click">Назад</Button>
-                    </StackPanel>
-                </Border>
-                <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
-                    <DockPanel Width="200">
-                        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Правая рука</TextBlock>
-                        <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.RightHand}" DisplayMemberPath="Name" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top"></ListView>
-                        <WrapPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                            <RadioButton>Обычная</RadioButton>
-                            <RadioButton>Зачар</RadioButton>
-                            <RadioButton>Редкая</RadioButton>
-                        </WrapPanel>
-                        <TextBlock Text="{Binding SelectedUnit.RightHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
-                    </DockPanel>
-                </Border>
-                <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
-                    <DockPanel Width="200">
-                        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Левая рука</TextBlock>
-                        <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.LeftHand}" DisplayMemberPath="Name" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top"></ListView>
-                        <WrapPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                            <RadioButton>Обычная</RadioButton>
-                            <RadioButton>Зачар</RadioButton>
-                            <RadioButton>Редкая</RadioButton>
-                        </WrapPanel>
-                        <TextBlock Text="{Binding SelectedUnit.LeftHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
-                    </DockPanel>
-                </Border>
+                    </Border>
+                    <Border HorizontalAlignment="Center" Padding="20" VerticalAlignment="Center" Background="White" CornerRadius="15" Opacity="0.9">
+                        <StackPanel Width="430">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <TextBlock x:Name="NameText" Text="{Binding SelectedUnit.Name}" HorizontalAlignment="Center" Margin="0 0 10 0"></TextBlock>
+                                <TextBlock x:Name="ExpText" Text="{Binding SelectedUnit.Exp}" HorizontalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                            <DockPanel>
+                                <StackPanel Width="400">
+                                    <DockPanel Height="25" Margin="0 0 0 3">
+                                        <TextBlock HorizontalAlignment="Left">Сила</TextBlock>
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                            <TextBlock x:Name="Str" Text="{Binding SelectedUnit.Strength}"></TextBlock>
+                                            <TextBlock Text="/"></TextBlock>
+                                            <TextBlock Text="{Binding SelectedUnit.MaxStrength}"></TextBlock>
+                                        </StackPanel>
+                                    </DockPanel>
+                                    <DockPanel Height="25" Margin="0 0 0 3">
+                                        <TextBlock HorizontalAlignment="Left">Ловкость</TextBlock>
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SelectedUnit.Dexterity}"></TextBlock>
+                                            <TextBlock Text="/"></TextBlock>
+                                            <TextBlock Text="{Binding SelectedUnit.MaxDexterity}"></TextBlock>
+                                        </StackPanel>
+                                    </DockPanel>
+                                    <DockPanel Height="25" Margin="0 0 0 3">
+                                        <TextBlock HorizontalAlignment="Left">Интеллект</TextBlock>
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SelectedUnit.Intelligence}"></TextBlock>
+                                            <TextBlock Text="/"></TextBlock>
+                                            <TextBlock Text="{Binding SelectedUnit.MaxIntelligence}"></TextBlock>
+                                        </StackPanel>
+                                    </DockPanel>
+                                    <DockPanel Height="25">
+                                        <TextBlock HorizontalAlignment="Left">Живучесть</TextBlock>
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SelectedUnit.Vitality}"></TextBlock>
+                                            <TextBlock Text="/"></TextBlock>
+                                            <TextBlock Text="{Binding SelectedUnit.MaxVitality}"></TextBlock>
+                                        </StackPanel>
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <Button x:Name="StrengthUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                                    <Button x:Name="DexteryUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                                    <Button x:Name="IntelligenceUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0 0 0 3" Content="+" Click="Up_Click"></Button>
+                                    <Button x:Name="VitalityUp" Height="25" Width="25" FontSize="8" Padding="0" Margin="0" Content="+" Click="Up_Click"></Button>
+                                </StackPanel>
+                            </DockPanel>
+                            <StackPanel Width="400" HorizontalAlignment="Left">
+                                <DockPanel Margin="0 15 0 0">
+                                    <TextBlock HorizontalAlignment="Left">Здоровье</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.Health}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment="Left">Мана</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.Mana}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+
+                                <DockPanel Margin="0 15 0 0">
+                                    <TextBlock HorizontalAlignment="Left">Физический урон</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.PhysicalDamage}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment="Left">Броня</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.Armor}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment="Left">Магический урон</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.MagicDamage}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment="Left">Магическая защита</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.MagicArmor}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment="Left">Шанс крита</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.CritChance}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment="Left">Критический урон</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.CritDamage}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                                <DockPanel Margin="0 15 0 0">
+                                    <TextBlock HorizontalAlignment="Left">Свободные очки навыков</TextBlock>
+                                    <TextBlock Text="{Binding SelectedUnit.Points}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                            </StackPanel>
+                            <Button x:Name="Back" Click="Back_Click">Назад</Button>
+                        </StackPanel>
+                    </Border>
+                    <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                        <DockPanel Width="200">
+                            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Правая рука</TextBlock>
+                            <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.RightHand}"
+                                DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <ComboBox ItemsSource="{Binding Types}" DisplayMemberPath="Name" SelectedItem="{Binding Type}" IsEditable="True" Width="75"></ComboBox>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Charities}" SelectedItem="{Binding SelectedUnit.RightHand.Type}" DisplayMemberPath="Name" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left"></ListView>
+                            <TextBlock Text="{Binding SelectedUnit.RightHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
+                        </DockPanel>
+                    </Border>
+                    <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                        <DockPanel Width="200">
+                            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Левая рука</TextBlock>
+                            <ListView ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedUnit.LeftHand}" DisplayMemberPath="Name" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top"></ListView>
+                            <WrapPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                                <RadioButton>Обычная</RadioButton>
+                                <RadioButton>Зачар</RadioButton>
+                                <RadioButton>Редкая</RadioButton>
+                            </WrapPanel>
+                            <TextBlock Text="{Binding SelectedUnit.LeftHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
+                        </DockPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Border Height="100" Margin="0 10 0 0" HorizontalAlignment="Center" Padding="20" Background="White" CornerRadius="15" Opacity="0.9">
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource Bonus}">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Сила"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.StrengthBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Style="{StaticResource Bonus}">
+                                <TextBlock Text="Выносливость"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.DexterityBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Интеллект"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.IntelligenceBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Style="{StaticResource Bonus}">
+                                <TextBlock Text="Живучесть"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.VitalityBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Здоровье"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.HealthBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Style="{StaticResource Bonus}">
+                                <TextBlock Text="Мана"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.ManaBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="П дамаг"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.PhysicalDamageBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Style="{StaticResource Bonus}">
+                                <TextBlock Text="Армор"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.ArmorBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="М дамаг"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.MagicDamageBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Style="{StaticResource Bonus}">
+                                <TextBlock Text="М армор"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.MagicArmorBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Крит шанс"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.CritChanceBonus}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Style="{StaticResource Bonus}">
+                                <TextBlock Text="Крит дамаг"></TextBlock>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.CritDamageBonus}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
     </Grid>

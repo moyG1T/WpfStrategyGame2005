@@ -25,8 +25,6 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _strength; }
             set
             {
-                Health = Vitality * 2 + value;
-                PhysicalDamage = value;
                 if (value >= MaxStrength)
                     _strength = MaxStrength;
                 else
@@ -42,9 +40,6 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _dexterity; }
             set
             {
-                Armor = value;
-                CritChance = (int)(value * 0.2);
-                CritDamage = (int)(value * 0.1);
                 if (value >= MaxDexterity)
                     _dexterity = MaxDexterity;
                 else
@@ -60,9 +55,6 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _intelligence; }
             set
             {
-                Mana = value;
-                MagicDamage = (int)(value * 0.2);
-                MagicArmor = (int)(value * 0.5);
                 if (value >= MaxIntelligence)
                     _intelligence = MaxIntelligence;
                 else
@@ -78,7 +70,6 @@ namespace WpfStrategyGame2005.MyClasses
             get { return _vitality; }
             set
             {
-                Health = value * 2 + Strength;
                 if (value >= MaxVitality)
                     _vitality = MaxVitality;
                 else
@@ -117,19 +108,54 @@ namespace WpfStrategyGame2005.MyClasses
 
         private Weapon equippedWeapon;
 
-        public void GetArmed(Weapon weapon)
+        private void GetArmed(Weapon weapon)
         {
-            if (weapon.Name == "Палка")
+            int _dexterity;
+            if (weapon.StrengthBonus + Strength > MaxStrength)
             {
-                Intelligence += weapon.IntelligenceBonus;
-                Mana += weapon.ManaBonus;
-                equippedWeapon = weapon;
+                weapon.StrengthBonus = weapon.StrengthBonus + Strength - MaxStrength;
             }
+            else if (weapon.DexterityBonus + Dexterity > MaxDexterity)
+            {
+                _dexterity = weapon.DexterityBonus + Dexterity - MaxDexterity;
+                Dexterity += weapon.DexterityBonus;
+                weapon.DexterityBonus = _dexterity;
+            }
+            Strength += weapon.StrengthBonus;
+            Dexterity += weapon.DexterityBonus;
+            Intelligence += weapon.IntelligenceBonus;
+            Vitality += weapon.VitalityBonus;
+
+            Health += weapon.HealthBonus;
+            Mana += weapon.ManaBonus;
+
+            PhysicalDamage += weapon.PhysicalDamageBonus;
+            Armor += weapon.ArmorBonus;
+            MagicDamage += weapon.MagicDamageBonus;
+            MagicArmor += weapon.MagicArmorBonus;
+            CritChance = (int)(CritChance * weapon.CritChanceBonus);
+            CritDamage = (int)(CritDamage * weapon.CritDamageBonus);
+
+            equippedWeapon = weapon;
         }
 
-        public void GetUnarmed()
+        private void GetUnarmed()
         {
+            Strength -= equippedWeapon.StrengthBonus;
+            Dexterity -= equippedWeapon.DexterityBonus;
             Intelligence -= equippedWeapon.IntelligenceBonus;
+            Vitality -= equippedWeapon.VitalityBonus;
+
+            Health -= equippedWeapon.HealthBonus;
+            Mana -= equippedWeapon.ManaBonus;
+
+            PhysicalDamage -= equippedWeapon.PhysicalDamageBonus;
+            Armor -= equippedWeapon.ArmorBonus;
+            MagicDamage -= equippedWeapon.MagicDamageBonus;
+            MagicArmor -= equippedWeapon.MagicArmorBonus;
+            CritChance = (int)(CritChance / equippedWeapon.CritChanceBonus);
+            CritDamage = (int)(CritDamage / equippedWeapon.CritDamageBonus);
+
             equippedWeapon = null;
         }
 

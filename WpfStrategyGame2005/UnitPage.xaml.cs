@@ -71,5 +71,6 @@ namespace WpfStrategyGame2005
         private void Plus10000_Click(object sender, RoutedEventArgs e)
         {
         }
+
     }
 }
