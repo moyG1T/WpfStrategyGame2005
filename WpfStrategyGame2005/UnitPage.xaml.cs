@@ -62,14 +62,17 @@ namespace WpfStrategyGame2005
 
         private void Plus100_Click(object sender, RoutedEventArgs e)
         {
+            unitViewModel.SelectedUnit.Exp += 100;
         }
 
         private void Plus1000_Click(object sender, RoutedEventArgs e)
         {
+            unitViewModel.SelectedUnit.Exp += 1000;
         }
 
         private void Plus10000_Click(object sender, RoutedEventArgs e)
         {
+            unitViewModel.SelectedUnit.Exp += 10000;
         }
 
     }

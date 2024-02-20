@@ -156,12 +156,15 @@ namespace WpfStrategyGame2005.MyClasses
             Types = charities;
             Name = name;
             Type = type;
+
             StrengthBonus = strengthBonus;
             DexterityBonus = dexterityBonus;
             IntelligenceBonus = intelligenceBonus;
             VitalityBonus = vitalityBonus;
+
             HealthBonus = healthBonus;
             ManaBonus = manaBonus;
+
             PhysicalDamageBonus = physicalDamageBonus;
             ArmorBonus = armorBonus;
             MagicDamageBonus = magicDamageBonus;

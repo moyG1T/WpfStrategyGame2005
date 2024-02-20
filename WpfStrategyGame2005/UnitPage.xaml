@@ -25,6 +25,7 @@
                         <StackPanel Width="430">
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                                 <TextBlock x:Name="NameText" Text="{Binding SelectedUnit.Name}" HorizontalAlignment="Center" Margin="0 0 10 0"></TextBlock>
+                                <TextBlock x:Name="LvlText" Text="{Binding SelectedUnit.Level}" HorizontalAlignment="Center"></TextBlock>
                                 <TextBlock x:Name="ExpText" Text="{Binding SelectedUnit.Exp}" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
                             <DockPanel>

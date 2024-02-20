@@ -19,7 +19,30 @@ namespace WpfStrategyGame2005.MyClasses
         public string Name { get; set; }
         public string Photo { get; set; }
         public int Points { get; set; }
-        public int Exp { get; set; }
+
+
+        private int exp;
+        public int Exp
+        {
+            get => exp;
+            set
+            {
+                exp = value; 
+                OnPropertyChanged("Exp");
+                Level = Level;
+            }
+        }
+        public int Level
+        {
+            get
+            {
+                return (int)Math.Ceiling(Math.Sqrt(Exp / 1000 * 8 + 1) / 2);
+            }
+            set
+            {
+                OnPropertyChanged("Level");
+            }
+        }
 
         public virtual int Strength
         {
@@ -30,6 +53,8 @@ namespace WpfStrategyGame2005.MyClasses
                     _strength = MaxStrength;
                 else
                     _strength = value;
+
+
                 OnPropertyChanged("Strength");
             }
         }
@@ -103,13 +128,12 @@ namespace WpfStrategyGame2005.MyClasses
             get { return leftHand; }
             set
             {
-                leftHand = value;
-
                 if (leftHandBackup != null)
                     GetUnarmed(ref leftHandBackup);
 
                 GetArmed(value, ref leftHandBackup);
 
+                leftHand = value;
                 OnPropertyChanged("LeftHand");
             }
         }
@@ -118,13 +142,12 @@ namespace WpfStrategyGame2005.MyClasses
             get { return rightHand; }
             set
             {
-                rightHand = value;
-
                 if (rightHandBackup != null)
                     GetUnarmed(ref rightHandBackup);
 
                 GetArmed(value, ref rightHandBackup);
 
+                rightHand = value;
                 OnPropertyChanged("RightHand");
             }
         }
@@ -168,7 +191,7 @@ namespace WpfStrategyGame2005.MyClasses
                 handBackup.VitalityBonus = weapon.VitalityBonus;
             }
 
-            Strength += weapon.StrengthBonus; // вместо сложения идет вычитание
+            Strength += weapon.StrengthBonus;
             Dexterity += weapon.DexterityBonus;
             Intelligence += weapon.IntelligenceBonus;
             Vitality += weapon.VitalityBonus;
@@ -176,7 +199,7 @@ namespace WpfStrategyGame2005.MyClasses
             Health += weapon.HealthBonus;
             Mana += weapon.ManaBonus;
 
-            PhysicalDamage += weapon.PhysicalDamageBonus;
+            PhysicalDamage += weapon.PhysicalDamageBonus; // <- сложение не идет
             Armor += weapon.ArmorBonus;
             MagicDamage += weapon.MagicDamageBonus;
             MagicArmor += weapon.MagicArmorBonus;
