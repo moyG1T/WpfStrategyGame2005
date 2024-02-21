@@ -38,13 +38,13 @@ namespace WpfStrategyGame2005.MyClasses
 
             Weapons = new ObservableCollection<Weapon>()
             {
-                new Weapon("Кулаки", Charities[0],Charities, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Щит",Charities[0],Charities, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
-                new Weapon("Палка", Charities[0],Charities, 0, 0, 15, 0, 0, 50, 0, 0, 0, 0 ,1.05, 3),
-                new Weapon("Кинжал", Charities[0],Charities, 0, 25, 0, 0, 0, 0, 15, 0, 0, 0 ,1.6, 1.7),
-                new Weapon("Меч", Charities[0],Charities, 15, 15, 0, 0, 0, 0, 25, 0, 0, 0 ,1.35, 2.5),
-                new Weapon("Топор", Charities[0],Charities, 40, 0, 0, 0, 0, 0, 40, 0, 0, 0 ,1.2, 2.7),
-                new Weapon("Кувалда", Charities[0],Charities, 25, 0, 0, 0, 25, 0, 40, 0, 0, 0 ,1.1, 3.5),
+                new Weapon("Кулаки", Charities[0],Charities, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Щит",Charities[0],Charities, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
+                new Weapon("Палка", Charities[0],Charities, false, 0, 0, 15, 0, 0, 50, 0, 0, 0, 0 ,1.05, 3),
+                new Weapon("Кинжал", Charities[0],Charities, false, 0, 25, 0, 0, 0, 0, 15, 0, 0, 0 ,1.6, 1.7),
+                new Weapon("Меч", Charities[0],Charities, true, 15, 15, 0, 0, 0, 0, 25, 0, 0, 0 ,1.35, 2.5),
+                new Weapon("Топор", Charities[0],Charities, true, 40, 0, 0, 0, 0, 0, 40, 0, 0, 0 ,1.2, 2.7),
+                new Weapon("Кувалда", Charities[0],Charities, false, 25, 0, 0, 0, 25, 0, 40, 0, 0, 0 ,1.1, 3.5),
             };
 
             Units = new ObservableCollection<Unit>()

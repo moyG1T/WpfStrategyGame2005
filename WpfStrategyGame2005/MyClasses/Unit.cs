@@ -132,14 +132,24 @@ namespace WpfStrategyGame2005.MyClasses
         private int maxVitality;
         public int MaxVitality { get => maxVitality; }
 
-        private ObservableCollection<Weapon> allowedWeapons;
-        public ObservableCollection<Weapon> AllowedWeapons
+        private IEnumerable<Weapon> leftHandWeapons;
+        public IEnumerable<Weapon> LeftHandWeapons
         {
-            get => allowedWeapons;
+            get => leftHandWeapons;
             set
             {
-                allowedWeapons = value;
-                OnPropertyChanged("AllowedWeapons");
+                leftHandWeapons = value;
+                OnPropertyChanged("LeftHandWeapons");
+            }
+        }
+        private ObservableCollection<Weapon> rightHandWeapons;
+        public ObservableCollection<Weapon> RightHandWeapons
+        {
+            get => rightHandWeapons;
+            set
+            {
+                rightHandWeapons = value;
+                OnPropertyChanged("RightHandWeapons");
             }
         }
 
@@ -172,6 +182,15 @@ namespace WpfStrategyGame2005.MyClasses
                     GetUnarmed(ref rightHandBackup);
 
                 GetArmed(value, ref rightHandBackup);
+
+                if (value.IsShield)
+                {
+                    LeftHandWeapons = RightHandWeapons.Where(x => x.Name == "Щит");
+                }
+                else
+                {
+                    LeftHandWeapons = RightHandWeapons.Where(x => x.Name == "123");
+                }
 
                 rightHand = value;
                 OnPropertyChanged("RightHand");
@@ -308,7 +327,9 @@ namespace WpfStrategyGame2005.MyClasses
         {
             Name = name;
             Photo = photo;
-            AllowedWeapons = weapons;
+
+            LeftHandWeapons = weapons.Where(x => x.Name == "Щит");
+            RightHandWeapons = weapons;
 
             this.maxStrength = maxStrength;
             this.maxDexterity = maxDexterity;

@@ -15,6 +15,7 @@ namespace WpfStrategyGame2005.MyClasses
     {
         private WeaponCharity type;
         public string Name { get; set; }
+        public bool IsShield { get; set; }
 
         public ObservableCollection<WeaponCharity> Types { get; set; }
         public WeaponCharity Type
@@ -149,10 +150,11 @@ namespace WpfStrategyGame2005.MyClasses
             set { critDamageBonus = value; OnPropertyChanged("CritDamageBonus"); }
         }
 
-        public Weapon(string name, WeaponCharity type, ObservableCollection<WeaponCharity> charities, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus,
+        public Weapon(string name, WeaponCharity type, ObservableCollection<WeaponCharity> charities, bool shield, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus,
             int healthBonus, int manaBonus,
             int physicalDamageBonus, int armorBonus, int magicDamageBonus, int magicArmorBonus, double critChanceBonus, double critDamageBonus)
         {
+            IsShield = shield;
             Types = charities;
             Name = name;
             Type = type;
