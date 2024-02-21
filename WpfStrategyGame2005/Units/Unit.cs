@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
-using WpfStrategyGame2005.MyInterfaces;
+using WpfStrategyGame2005.Equipments;
 
 namespace WpfStrategyGame2005.MyClasses
 {
@@ -106,14 +103,14 @@ namespace WpfStrategyGame2005.MyClasses
         private int maxVitality;
         public int MaxVitality { get => maxVitality; }
 
-        private ObservableCollection<Weapon> allowedWeapons;
-        public ObservableCollection<Weapon> AllowedWeapons
+        private ObservableCollection<Equipment> equipmentInventory;
+        public ObservableCollection<Equipment> EquipmentInventory
         {
-            get => allowedWeapons;
+            get => equipmentInventory;
             set
             {
-                allowedWeapons = value;
-                OnPropertyChanged("AllowedWeapons");
+                equipmentInventory = value;
+                OnPropertyChanged("EquipmentInventory");
             }
         }
 
@@ -278,11 +275,11 @@ namespace WpfStrategyGame2005.MyClasses
         }
 
 
-        public Unit(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int maxStrength, int maxDexterity, int maxIntelligence, int maxVitality, int points)
+        public Unit(string name, string photo, ObservableCollection<Equipment> inventory, int strength, int dexterity, int intelligence, int vitality, int maxStrength, int maxDexterity, int maxIntelligence, int maxVitality, int points)
         {
             Name = name;
             Photo = photo;
-            AllowedWeapons = weapons;
+            EquipmentInventory = inventory;
 
             this.maxStrength = maxStrength;
             this.maxDexterity = maxDexterity;

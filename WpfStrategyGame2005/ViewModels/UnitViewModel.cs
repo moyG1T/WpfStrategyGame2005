@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using WpfStrategyGame2005.Equipments;
 using static WpfStrategyGame2005.MyClasses.Weapon;
 
 namespace WpfStrategyGame2005.MyClasses
@@ -23,22 +24,21 @@ namespace WpfStrategyGame2005.MyClasses
         }
 
         public ObservableCollection<Unit> Units { get; set; }
-        public ObservableCollection<Weapon> Weapons { get; set; }
-        public ObservableCollection<WeaponCharity> Charities { get; set; }
+        public ObservableCollection<Equipment> Equipments { get; set; }
+        public ObservableCollection<Charity> Charities { get; set; }
 
         public UnitViewModel()
         {
-            Charities = new ObservableCollection<WeaponCharity>()
+            Charities = new ObservableCollection<Charity>()
             {
-                new WeaponCharity("Без зачарований", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0 ),
-                new WeaponCharity("Мобильность", 0, 5, 0, 5, 0, 0, 0, 0, 0, 0 ,0, 0 ),
-                new WeaponCharity("Острота", 10, 10, 0, 10, 10, 0, 0, 0, 0, 0 ,0, 0 ),
-                new WeaponCharity("Донат", 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,0, 0 ),
+                new Charity("Без зачарований", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0 ),
+                new Charity("Мобильность", 0, 5, 0, 5, 0, 0, 0, 0, 0, 0 ,0, 0 ),
+                new Charity("Острота", 10, 10, 0, 10, 10, 0, 0, 0, 0, 0 ,0, 0 ),
+                new Charity("Донат", 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,0, 0 ),
             };
 
-            Weapons = new ObservableCollection<Weapon>()
+            Equipments = new ObservableCollection<Equipment>()
             {
-                new Weapon("Кулаки", Charities[0],Charities, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
                 new Weapon("Щит",Charities[0],Charities, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0),
                 new Weapon("Палка", Charities[0],Charities, 0, 0, 15, 0, 0, 50, 0, 0, 0, 0 ,1.05, 3),
                 new Weapon("Кинжал", Charities[0],Charities, 0, 25, 0, 0, 0, 0, 15, 0, 0, 0 ,1.6, 1.7),
@@ -49,9 +49,9 @@ namespace WpfStrategyGame2005.MyClasses
 
             Units = new ObservableCollection<Unit>()
             {
-                new Warrior("Воин", "/Resources/cherry.jpg", Weapons, 30, 15, 10, 25, 50),
-                new Rogue("Жулик", "/Resources/rogue.jpg",Weapons, 20, 30, 15, 20, 50),
-                new Wizard("Волшебник", "/Resources/mag.png",Weapons, 15, 20, 35, 15, 50),
+                new Warrior("Воин", "/Resources/cherry.jpg", Equipments, 30, 15, 10, 25, 50),
+                new Rogue("Жулик", "/Resources/rogue.jpg", Equipments, 20, 30, 15, 20, 50),
+                new Wizard("Волшебник", "/Resources/mag.png", Equipments, 15, 20, 35, 15, 50),
             };
         }
 

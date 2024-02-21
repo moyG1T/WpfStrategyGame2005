@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfStrategyGame2005.MyClasses
 {
-    public class WeaponCharity
+    public class Charity
     {
-        public WeaponCharity(string name, int strengthCharity, int dexterityCharity, int intelligenceCharity, int vitalityCharity,
+        public Charity(string name, int strengthCharity, int dexterityCharity, int intelligenceCharity, int vitalityCharity,
             int healthCharity, int manaCharity, 
             int physicalDamageCharity, int armorCharity, int magicDamageCharity, int magicArmorCharity, double critChanceCharity, double critDamageCharity)
         {

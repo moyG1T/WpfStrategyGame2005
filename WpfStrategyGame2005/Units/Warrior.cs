@@ -1,16 +1,14 @@
 ﻿
 using System;
 using System.Collections.ObjectModel;
+using WpfStrategyGame2005.Equipments;
 
 namespace WpfStrategyGame2005.MyClasses
 {
     public class Warrior : Unit
     {
-        public Warrior(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int points)
-            : base(name, photo, weapons, strength, dexterity, intelligence, vitality, 250, 80, 50, 100, points)
-        {
-            Points = 50;
-        }
+        public Warrior(string name, string photo, ObservableCollection<Equipment> weapons, int strength, int dexterity, int intelligence, int vitality, int points)
+            : base(name, photo, weapons, strength, dexterity, intelligence, vitality, 250, 80, 50, 100, points) { }
 
         public override int Strength
         {

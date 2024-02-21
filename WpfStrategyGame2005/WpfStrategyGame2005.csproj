@@ -55,21 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MyClasses\Rogue.cs" />
-    <Compile Include="MyClasses\Unit.cs" />
-    <Compile Include="MyClasses\UnitViewModel.cs" />
-    <Compile Include="MyClasses\Warrior.cs" />
-    <Compile Include="MyClasses\Weapon.cs" />
-    <Compile Include="MyClasses\WeaponCharity.cs" />
-    <Compile Include="MyClasses\Wizard.cs" />
-    <Compile Include="MyInterfaces\IAttack.cs" />
-    <Compile Include="MyInterfaces\IHealth.cs" />
-    <Compile Include="UnitPage.xaml.cs">
+    <Compile Include="Equipments\Equipment.cs" />
+    <Compile Include="ViewModels\UnitViewModel.cs" />
+    <Compile Include="Equipments\Weapon.cs" />
+    <Compile Include="Equipments\Charity.cs" />
+    <Compile Include="Pages\UnitPage.xaml.cs">
       <DependentUpon>UnitPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UnitSelect.xaml.cs">
+    <Compile Include="Pages\UnitSelect.xaml.cs">
       <DependentUpon>UnitSelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Units\Rogue.cs" />
+    <Compile Include="Units\Unit.cs" />
+    <Compile Include="Units\Warrior.cs" />
+    <Compile Include="Units\Wizard.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,11 +81,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UnitPage.xaml">
+    <Page Include="Pages\UnitPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UnitSelect.xaml">
+    <Page Include="Pages\UnitSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\asd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\silh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

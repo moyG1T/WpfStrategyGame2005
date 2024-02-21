@@ -1,0 +1,34 @@
+﻿<Page x:Class="WpfStrategyGame2005.UnitPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="UnitPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="320" Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Resources/silh.png" Grid.Column="0" HorizontalAlignment="Center"></Image>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="320">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                <DockPanel Width="200" Height="100" Background="Gray" Opacity="0.9" Margin="5">
+                    <TextBlock Text="{Binding SelectedUnit.RightHand.Name}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"></TextBlock>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Center">Х</Button>
+                </DockPanel>
+                <DockPanel Width="200" Height="100" Background="Gray" Opacity="0.9" Margin="5">
+                    <TextBlock Text="{Binding SelectedUnit.LeftHand.Name}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"></TextBlock>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Center">Х</Button>
+                </DockPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" MinWidth="320" HorizontalAlignment="Center">
+            <ListView ItemsSource="{Binding SelectedUnit.EquipmentInventory}" DisplayMemberPath="Name" AllowDrop="True"></ListView>
+        </StackPanel>
+    </Grid>
+</Page>

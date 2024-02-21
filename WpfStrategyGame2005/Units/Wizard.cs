@@ -1,15 +1,13 @@
 ﻿
 using System.Collections.ObjectModel;
+using WpfStrategyGame2005.Equipments;
 
 namespace WpfStrategyGame2005.MyClasses
 {
     public class Wizard : Unit
     {
-        public Wizard(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int points)
-            : base(name, photo, weapons, strength, dexterity, intelligence, vitality, 45, 80, 250, 70, points)
-        {
-            Points = 50;
-        }
+        public Wizard(string name, string photo, ObservableCollection<Equipment> weapons, int strength, int dexterity, int intelligence, int vitality, int points)
+            : base(name, photo, weapons, strength, dexterity, intelligence, vitality, 45, 80, 250, 70, points) { }
 
         public override int Strength
         {

@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using WpfStrategyGame2005.MyClasses;
 
-namespace WpfStrategyGame2005.MyClasses
+namespace WpfStrategyGame2005.Equipments
 {
-    public class Weapon : INotifyPropertyChanged
+    public class Equipment : INotifyPropertyChanged
     {
-        private WeaponCharity type;
+        private Charity type;
         public string Name { get; set; }
 
-        public ObservableCollection<WeaponCharity> Types { get; set; }
-        public WeaponCharity Type
+        public ObservableCollection<Charity> Types { get; set; }
+        public Charity Type
         {
             get { return type; }
             set
@@ -33,8 +27,8 @@ namespace WpfStrategyGame2005.MyClasses
             }
         }
 
-        private WeaponCharity currentCharity;
-        public void SetWeaponCharity(WeaponCharity type)
+        private Charity currentCharity;
+        public void SetWeaponCharity(Charity type)
         {
             StrengthBonus += type.StrengthCharity;
             DexterityBonus += type.DexterityCharity;
@@ -149,7 +143,7 @@ namespace WpfStrategyGame2005.MyClasses
             set { critDamageBonus = value; OnPropertyChanged("CritDamageBonus"); }
         }
 
-        public Weapon(string name, WeaponCharity type, ObservableCollection<WeaponCharity> charities, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus,
+        public Equipment(string name, Charity type, ObservableCollection<Charity> charities, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus,
             int healthBonus, int manaBonus,
             int physicalDamageBonus, int armorBonus, int magicDamageBonus, int magicArmorBonus, double critChanceBonus, double critDamageBonus)
         {
@@ -172,7 +166,6 @@ namespace WpfStrategyGame2005.MyClasses
             CritChanceBonus = critChanceBonus;
             CritDamageBonus = critDamageBonus;
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

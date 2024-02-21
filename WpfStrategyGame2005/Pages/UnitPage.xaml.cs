@@ -21,7 +21,7 @@ namespace WpfStrategyGame2005
             unitViewModel = _unitViewModel;
             DataContext = unitViewModel;
 
-            UnitImage.Source = new BitmapImage(new Uri(unitViewModel.SelectedUnit.Photo, UriKind.Relative));
+            //UnitImage.Source = new BitmapImage(new Uri(unitViewModel.SelectedUnit.Photo, UriKind.Relative));
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
