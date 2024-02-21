@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Xml.Linq;
 using WpfStrategyGame2005.MyInterfaces;
 
 namespace WpfStrategyGame2005.MyClasses
@@ -27,22 +28,47 @@ namespace WpfStrategyGame2005.MyClasses
             get => exp;
             set
             {
-                exp = value; 
+                exp = value;
                 OnPropertyChanged("Exp");
                 Level = Level;
             }
         }
-        public int Level
+        private string level;
+        public string Level
         {
             get
             {
-                return (int)Math.Ceiling(Math.Sqrt(Exp / 1000 * 8 + 1) / 2);
+                if (level == null)
+                    level = $"Лвл 1 - ({Exp}/1000)";
+                return level;
             }
             set
             {
+                if (Exp < 1000)
+                    level = $"Лвл 1 - ({Exp}/1000)";
+                else if (Exp >= 1000 && Exp < 3000)
+                    level = $"Лвл 2 - ({Exp - 1000}/2000)";
+                else if (Exp >= 3000 && Exp < 6000)
+                    level = $"Лвл 3 - ({Exp - 3000}/3000)";
+                else if (Exp >= 6000 && Exp < 10000)
+                    level = $"Лвл 4 - ({Exp - 6000}/4000)";
+                else if (Exp >= 10000 && Exp < 15000)
+                    level = $"Лвл 5 - ({Exp - 10000}/5000)";
+                else if (Exp >= 15000 && Exp < 21000)
+                    level = $"Лвл 6 - ({Exp - 15000}/6000)";
+                else if (Exp >= 21000 && Exp < 28000)
+                    level = $"Лвл 7 - ({Exp - 21000}/7000)";
+                else if (Exp >= 28000 && Exp < 36000)
+                    level = $"Лвл 8 - ({Exp - 28000}/8000)";
+                else if (Exp >= 36000 && Exp < 45000)
+                    level = $"Лвл 9 - ({Exp - 36000}/9000)";
+                else if (Exp >= 45000)
+                    level = $"Лвл 10 - ({Exp - 45000})";
                 OnPropertyChanged("Level");
             }
         }
+
+        public bool ShieldSlot { get; set; }
 
         public virtual int Strength
         {
