@@ -5,8 +5,8 @@ namespace WpfStrategyGame2005.MyClasses
 {
     public class Rogue : Unit
     {
-        public Rogue(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int points)
-            : base(name, photo, weapons, strength, dexterity, intelligence, vitality, 65, 250, 70, 80, points)
+        public Rogue(string name, string photo, ObservableCollection<Weapon> weapons, ObservableCollection<Chest> chests, int strength, int dexterity, int intelligence, int vitality, int points)
+            : base(name, photo, weapons, chests, strength, dexterity, intelligence, vitality, 65, 250, 70, 80, points)
         {
             Points = 50;
         }

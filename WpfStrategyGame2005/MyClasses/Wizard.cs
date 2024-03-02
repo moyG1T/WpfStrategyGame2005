@@ -5,8 +5,8 @@ namespace WpfStrategyGame2005.MyClasses
 {
     public class Wizard : Unit
     {
-        public Wizard(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int points)
-            : base(name, photo, weapons, strength, dexterity, intelligence, vitality, 45, 80, 250, 70, points)
+        public Wizard(string name, string photo, ObservableCollection<Weapon> weapons, ObservableCollection<Chest> chests, int strength, int dexterity, int intelligence, int vitality, int points)
+            : base(name, photo, weapons, chests, strength, dexterity, intelligence, vitality, 45, 80, 250, 70, points)
         {
             Points = 50;
         }

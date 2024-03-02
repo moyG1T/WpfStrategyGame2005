@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MyClasses\Chest.cs" />
     <Compile Include="MyClasses\Equipment.cs" />
     <Compile Include="MyClasses\Rogue.cs" />
     <Compile Include="MyClasses\Unit.cs" />

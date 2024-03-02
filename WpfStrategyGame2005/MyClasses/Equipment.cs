@@ -8,12 +8,11 @@ namespace WpfStrategyGame2005.MyClasses
     {
         private Charity type;
         public string Name { get; set; }
-        public bool IsShield { get; set; }
 
         public ObservableCollection<Charity> Types { get; set; }
         public Charity Type
         {
-            get { return type; }
+            get { return type == null ? Types[0] : type; }
             set
             {
                 type = value;
@@ -80,15 +79,9 @@ namespace WpfStrategyGame2005.MyClasses
         private double critChanceBonus;
         private double critDamageBonus;
 
-        public Equipment()
-        {
-        }
-
-        public Equipment(string name,Charity type, ObservableCollection<Charity> types,  bool isShield,  int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus, int healthBonus, int manaBonus, int physicalDamageBonus, int armorBonus, int magicDamageBonus, int magicArmorBonus, double critChanceBonus, double critDamageBonus)
+        public Equipment(string name, ObservableCollection<Charity> types, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus, int healthBonus, int manaBonus, int physicalDamageBonus, int armorBonus, int magicDamageBonus, int magicArmorBonus, double critChanceBonus, double critDamageBonus)
         {
             Types = types;
-            IsShield = isShield;
-            Type = type;
             Name = name;
             CritChanceBonus = critChanceBonus;
             CritDamageBonus = critDamageBonus;

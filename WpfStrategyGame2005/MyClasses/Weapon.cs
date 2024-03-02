@@ -13,9 +13,11 @@ namespace WpfStrategyGame2005.MyClasses
 {
     public class Weapon : Equipment
     {
-        public Weapon( string name, Charity type, ObservableCollection<Charity> types, bool isShield, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus, int healthBonus, int manaBonus, int physicalDamageBonus, int armorBonus, int magicDamageBonus, int magicArmorBonus, double critChanceBonus, double critDamageBonus) 
-            : base( name, type, types, isShield,  strengthBonus, dexterityBonus, intelligenceBonus, vitalityBonus, healthBonus, manaBonus, physicalDamageBonus, armorBonus, magicDamageBonus, magicArmorBonus, critChanceBonus, critDamageBonus)
+        public Weapon( string name, ObservableCollection<Charity> types, bool isShield, int strengthBonus, int dexterityBonus, int intelligenceBonus, int vitalityBonus, int healthBonus, int manaBonus, int physicalDamageBonus, int armorBonus, int magicDamageBonus, int magicArmorBonus, double critChanceBonus, double critDamageBonus) 
+            : base( name, types, strengthBonus, dexterityBonus, intelligenceBonus, vitalityBonus, healthBonus, manaBonus, physicalDamageBonus, armorBonus, magicDamageBonus, magicArmorBonus, critChanceBonus, critDamageBonus)
         {
+            IsShield = isShield;
         }
+        public bool IsShield { get; set; }
     }
 }

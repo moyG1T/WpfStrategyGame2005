@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfStrategyGame2005" xmlns:myclasses="clr-namespace:WpfStrategyGame2005.MyClasses" d:DataContext="{d:DesignInstance Type=myclasses:UnitViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1280"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="UnitPage">
 
     <Grid>
@@ -112,11 +112,118 @@
                             <Button x:Name="Back" Click="Back_Click">Назад</Button>
                         </StackPanel>
                     </Border>
+                    
+                    <DockPanel>
+                        <Border Margin="10 0 0 0" DockPanel.Dock="Top" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                            <DockPanel Width="200" Height="300">
+                                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Правая рука</TextBlock>
+                                <ListView ItemsSource="{Binding SelectedUnit.RightHandWeapons}" SelectedItem="{Binding SelectedUnit.RightHand}"
+                                DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <StackPanel Orientation="Vertical" Width="150">
+                                                        <DockPanel>
+                                                            <TextBlock Text="Сила" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding StrengthBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Ловкость" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding DexterityBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Интеллект" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding IntelligenceBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Живучесть" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding VitalityBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Здоровье" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding HealthBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Мана" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding ManaBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Физ. Урон" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding PhysicalDamageBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Броня" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding ArmorBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Маг. Урон" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding MagicDamageBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Маг. Защита" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding MagicArmorBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Шанс крита" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding CritChanceBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                        <DockPanel>
+                                                            <TextBlock Text="Крит. Урон" HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="{Binding CritDamageBonus}" HorizontalAlignment="Right"/>
+                                                        </DockPanel>
+                                                    </StackPanel>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                                <GridViewColumn>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <ComboBox ItemsSource="{Binding Types}" DisplayMemberPath="Name" SelectedItem="{Binding Type}" IsEditable="True" Width="75"></ComboBox>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                                <TextBlock Text="{Binding SelectedUnit.RightHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
+                            </DockPanel>
+                        </Border>
+                        <Border Margin="10 10 0 0" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
+                            <DockPanel Width="200">
+                                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Левая рука</TextBlock>
+                                <ListView ItemsSource="{Binding SelectedUnit.LeftHandWeapons}" SelectedItem="{Binding SelectedUnit.LeftHand}"
+                                      DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                                <GridViewColumn>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <ComboBox ItemsSource="{Binding Types}" DisplayMemberPath="Name" SelectedItem="{Binding Type}" IsEditable="True" Width="75"></ComboBox>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                                <TextBlock Text="{Binding SelectedUnit.LeftHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
+                            </DockPanel>
+                        </Border>
+                    </DockPanel>
                     <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
                         <DockPanel Width="200">
-                            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Правая рука</TextBlock>
-                            <ListView ItemsSource="{Binding SelectedUnit.RightHandWeapons}" SelectedItem="{Binding SelectedUnit.RightHand}"
-                                DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Торс</TextBlock>
+                            <ListView ItemsSource="{Binding SelectedUnit.Chests}" SelectedItem="{Binding SelectedUnit.Chest}"
+                                      DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="ToolTip">
@@ -170,6 +277,18 @@
                                                         <TextBlock Text="Крит. Урон" HorizontalAlignment="Left"/>
                                                         <TextBlock Text="{Binding CritDamageBonus}" HorizontalAlignment="Right"/>
                                                     </DockPanel>
+                                                    <DockPanel Margin="0 10 0 0">
+                                                        <TextBlock Text="Треб. Сила" HorizontalAlignment="Left"/>
+                                                        <TextBlock Text="{Binding StrengthRequirement}" HorizontalAlignment="Right"/>
+                                                    </DockPanel>
+                                                    <DockPanel>
+                                                        <TextBlock Text="Треб. Жив." HorizontalAlignment="Left"/>
+                                                        <TextBlock Text="{Binding VitalityRequirement}" HorizontalAlignment="Right"/>
+                                                    </DockPanel>
+                                                    <DockPanel>
+                                                        <TextBlock Text="Треб. Уровень" HorizontalAlignment="Left"/>
+                                                        <TextBlock Text="{Binding LevelRequirement}" HorizontalAlignment="Right"/>
+                                                    </DockPanel>
                                                 </StackPanel>
                                             </Setter.Value>
                                         </Setter>
@@ -178,8 +297,8 @@
                                 <ListView.View>
                                     <GridView>
                                         <GridView.Columns>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                                            <GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="100"></GridViewColumn>
+                                            <GridViewColumn Width="100">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <ComboBox ItemsSource="{Binding Types}" DisplayMemberPath="Name" SelectedItem="{Binding Type}" IsEditable="True" Width="75"></ComboBox>
@@ -190,30 +309,7 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-                            <TextBlock Text="{Binding SelectedUnit.RightHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
-                        </DockPanel>
-                    </Border>
-                    <Border Margin="10 0 0 0" HorizontalAlignment="Center" Padding="20" VerticalAlignment="Stretch" Background="White" CornerRadius="15" Opacity="0.9">
-                        <DockPanel Width="200">
-                            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">Левая рука</TextBlock>
-                            <ListView ItemsSource="{Binding SelectedUnit.LeftHandWeapons}" SelectedItem="{Binding SelectedUnit.LeftHand}"
-                                      DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridView.Columns>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                                            <GridViewColumn>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <ComboBox ItemsSource="{Binding Types}" DisplayMemberPath="Name" SelectedItem="{Binding Type}" IsEditable="True" Width="75"></ComboBox>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                        </GridView.Columns>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                            <TextBlock Text="{Binding SelectedUnit.LeftHand.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding SelectedUnit.Chest.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" DockPanel.Dock="Bottom"></TextBlock>
                         </DockPanel>
                     </Border>
                 </StackPanel>

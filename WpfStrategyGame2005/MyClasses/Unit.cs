@@ -77,6 +77,8 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 if (value >= MaxStrength)
                     _strength = MaxStrength;
+                else if (value <= 1)
+                    _strength = 1;
                 else
                     _strength = value;
 
@@ -94,6 +96,8 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 if (value >= MaxDexterity)
                     _dexterity = MaxDexterity;
+                else if (value <= 1)
+                    _dexterity = 1;
                 else
                     _dexterity = value;
                 OnPropertyChanged("Dexterity");
@@ -109,6 +113,8 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 if (value >= MaxIntelligence)
                     _intelligence = MaxIntelligence;
+                else if (value <= 1)
+                    _intelligence = 1;
                 else
                     _intelligence = value;
                 OnPropertyChanged("Intelligence");
@@ -124,6 +130,8 @@ namespace WpfStrategyGame2005.MyClasses
             {
                 if (value >= MaxVitality)
                     _vitality = MaxVitality;
+                else if (value <= 1)
+                    _vitality = 1;
                 else
                     _vitality = value;
                 OnPropertyChanged("Vitality");
@@ -142,46 +150,33 @@ namespace WpfStrategyGame2005.MyClasses
                 OnPropertyChanged("LeftHandWeapons");
             }
         }
-        private ObservableCollection<Weapon> rightHandWeapons;
-        public ObservableCollection<Weapon> RightHandWeapons
-        {
-            get => rightHandWeapons;
-            set
-            {
-                rightHandWeapons = value;
-                OnPropertyChanged("RightHandWeapons");
-            }
-        }
+        public ObservableCollection<Weapon> RightHandWeapons { get; set; }
+        public ObservableCollection<Chest> Chests { get; set; }
 
         private Weapon leftHand;
         private Weapon rightHand;
 
-        private Weapon leftHandBackup;
-        private Weapon rightHandBackup;
+        private Equipment weaponBackup;
+        private Equipment chestBackup;
 
         public Weapon LeftHand
         {
             get { return leftHand; }
             set
             {
-                if (leftHandBackup != null)
-                    GetUnarmed(ref leftHandBackup);
-
-                GetArmed(value, ref leftHandBackup);
-
                 leftHand = value;
                 OnPropertyChanged("LeftHand");
             }
         }
         public Weapon RightHand
         {
-            get { return rightHand; }
+            get { return rightHand == null ? RightHandWeapons[0] : rightHand; }
             set
             {
-                if (rightHandBackup != null)
-                    GetUnarmed(ref rightHandBackup);
+                if (weaponBackup != null)
+                    GetUnarmed(ref weaponBackup);
 
-                GetArmed(value, ref rightHandBackup);
+                GetArmed(value, ref weaponBackup);
 
                 if (value.IsShield)
                 {
@@ -189,7 +184,7 @@ namespace WpfStrategyGame2005.MyClasses
                 }
                 else
                 {
-                    LeftHandWeapons = RightHandWeapons.Where(x => x.Name == "123");
+                    LeftHandWeapons = new ObservableCollection<Weapon>();
                 }
 
                 rightHand = value;
@@ -197,79 +192,111 @@ namespace WpfStrategyGame2005.MyClasses
             }
         }
 
-        private void GetArmed(Weapon weapon, ref Weapon handBackup)
+        private Chest chest;
+        public Chest Chest
         {
-            handBackup = weapon;
-            if (Strength + weapon.StrengthBonus >= MaxStrength)
+            get => chest == null ? Chests[0] : chest;
+            set
             {
-                handBackup.StrengthBonus = MaxStrength - Strength;
-            }
-            else
-            {
-                handBackup.StrengthBonus = weapon.StrengthBonus;
-            }
+                if (chestBackup != null)
+                    GetUnarmed(ref chestBackup);
 
-            if (Dexterity + weapon.DexterityBonus >= MaxDexterity)
-            {
-                handBackup.DexterityBonus = MaxDexterity - Dexterity;
-            }
-            else
-            {
-                handBackup.DexterityBonus = weapon.DexterityBonus;
-            }
+                GetArmed(value, ref chestBackup);
 
-            if (Intelligence + weapon.IntelligenceBonus >= MaxIntelligence)
-            {
-                handBackup.IntelligenceBonus = MaxIntelligence - Intelligence;
+                chest = value;
+                OnPropertyChanged("Chest");
             }
-            else
-            {
-                handBackup.IntelligenceBonus = weapon.IntelligenceBonus;
-            }
-
-            if (Vitality + weapon.VitalityBonus >= MaxVitality)
-            {
-                handBackup.VitalityBonus = MaxVitality - Vitality;
-            }
-            else
-            {
-                handBackup.VitalityBonus = weapon.VitalityBonus;
-            }
-
-            Strength += weapon.StrengthBonus;
-            Dexterity += weapon.DexterityBonus;
-            Intelligence += weapon.IntelligenceBonus;
-            Vitality += weapon.VitalityBonus;
-
-            Health += weapon.HealthBonus;
-            Mana += weapon.ManaBonus;
-
-            PhysicalDamage += weapon.PhysicalDamageBonus; // <- сложение не идет
-            Armor += weapon.ArmorBonus;
-            MagicDamage += weapon.MagicDamageBonus;
-            MagicArmor += weapon.MagicArmorBonus;
-            CritChance = (int)(CritChance * weapon.CritChanceBonus);
-            CritDamage = (int)(CritDamage * weapon.CritDamageBonus);
         }
 
-        private void GetUnarmed(ref Weapon handBackup)
+        private void GetArmed(Equipment equipment, ref Equipment backup)
         {
-            Strength -= handBackup.StrengthBonus;
-            Dexterity -= handBackup.DexterityBonus;
-            Intelligence -= handBackup.IntelligenceBonus;
-            Vitality -= handBackup.VitalityBonus;
+            backup = equipment;
+            if (Strength + equipment.StrengthBonus >= MaxStrength)
+            {
+                backup.StrengthBonus = MaxStrength - Strength;
+            }
+            else if (Strength + equipment.StrengthBonus <= 1)
+            {
+                backup.StrengthBonus = -(Strength - 1);
+            }
+            else
+            {
+                backup.StrengthBonus = equipment.StrengthBonus;
+            }
 
-            Health -= handBackup.HealthBonus;
-            Mana -= handBackup.ManaBonus;
+            if (Dexterity + equipment.DexterityBonus >= MaxDexterity)
+            {
+                backup.DexterityBonus = MaxDexterity - Dexterity;
+            }
+            else if (Dexterity + equipment.DexterityBonus <= 1)
+            {
+                backup.DexterityBonus = -(Dexterity - 1);
+            }
+            else
+            {
+                backup.DexterityBonus = equipment.DexterityBonus;
+            }
 
-            PhysicalDamage -= handBackup.PhysicalDamageBonus;
-            Armor -= handBackup.ArmorBonus;
-            MagicDamage -= handBackup.MagicDamageBonus;
-            MagicArmor -= handBackup.MagicArmorBonus;
-            CritChance = (int)(CritChance / handBackup.CritChanceBonus);
-            CritDamage = (int)(CritDamage / handBackup.CritDamageBonus);
+            if (Intelligence + equipment.IntelligenceBonus >= MaxIntelligence)
+            {
+                backup.IntelligenceBonus = MaxIntelligence - Intelligence;
+            }
+            else if (Intelligence + equipment.IntelligenceBonus <= 1)
+            {
+                backup.IntelligenceBonus = -(Intelligence - 1);
+            }
+            else
+            {
+                backup.IntelligenceBonus = equipment.IntelligenceBonus;
+            }
 
-            handBackup = null;
+            if (Vitality + equipment.VitalityBonus >= MaxVitality)
+            {
+                backup.VitalityBonus = MaxVitality - Vitality;
+            }
+            else if (Vitality + equipment.VitalityBonus <= 1)
+            {
+                backup.VitalityBonus = -(Vitality - 1);
+            }
+            else
+            {
+                backup.VitalityBonus = equipment.VitalityBonus;
+            }
+
+            Strength += equipment.StrengthBonus;
+            Dexterity += equipment.DexterityBonus;
+            Intelligence += equipment.IntelligenceBonus;
+            Vitality += equipment.VitalityBonus;
+
+            Health += equipment.HealthBonus;
+            Mana += equipment.ManaBonus;
+
+            PhysicalDamage += equipment.PhysicalDamageBonus; // <- сложение не идет
+            Armor += equipment.ArmorBonus;
+            MagicDamage += equipment.MagicDamageBonus;
+            MagicArmor += equipment.MagicArmorBonus;
+            CritChance = (int)(CritChance * equipment.CritChanceBonus);
+            CritDamage = (int)(CritDamage * equipment.CritDamageBonus);
+        }
+
+        private void GetUnarmed(ref Equipment backup)
+        {
+            Strength -= backup.StrengthBonus;
+            Dexterity -= backup.DexterityBonus;
+            Intelligence -= backup.IntelligenceBonus;
+            Vitality -= backup.VitalityBonus;
+
+            Health -= backup.HealthBonus;
+            Mana -= backup.ManaBonus;
+
+            PhysicalDamage -= backup.PhysicalDamageBonus;
+            Armor -= backup.ArmorBonus;
+            MagicDamage -= backup.MagicDamageBonus;
+            MagicArmor -= backup.MagicArmorBonus;
+            CritChance = (int)(CritChance / backup.CritChanceBonus);
+            CritDamage = (int)(CritDamage / backup.CritDamageBonus);
+
+            backup = null;
         }
 
         private int health;
@@ -323,19 +350,32 @@ namespace WpfStrategyGame2005.MyClasses
         }
 
 
-        public Unit(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int maxStrength, int maxDexterity, int maxIntelligence, int maxVitality, int points)
+        public Unit(string name, string photo, ObservableCollection<Weapon> weapons, ObservableCollection<Chest> chests, int strength, int dexterity, int intelligence, int vitality, int maxStrength, int maxDexterity, int maxIntelligence, int maxVitality, int points)
         {
             Name = name;
             Photo = photo;
 
             LeftHandWeapons = weapons.Where(x => x.Name == "Щит");
             RightHandWeapons = weapons;
+            Chests = chests;
 
             this.maxStrength = maxStrength;
             this.maxDexterity = maxDexterity;
             this.maxIntelligence = maxIntelligence;
             this.maxVitality = maxVitality;
 
+            Strength = strength;
+            Dexterity = dexterity;
+            Intelligence = intelligence;
+            Vitality = vitality;
+            Points = points;
+        }
+
+        public Unit(string name, string photo, ObservableCollection<Weapon> weapons, int strength, int dexterity, int intelligence, int vitality, int v1, int v2, int v3, int v4, int points)
+        {
+            Name = name;
+            Photo = photo;
+            RightHandWeapons = weapons;
             Strength = strength;
             Dexterity = dexterity;
             Intelligence = intelligence;
