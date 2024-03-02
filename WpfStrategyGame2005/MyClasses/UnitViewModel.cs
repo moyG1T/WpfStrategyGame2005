@@ -24,16 +24,16 @@ namespace WpfStrategyGame2005.MyClasses
 
         public ObservableCollection<Unit> Units { get; set; }
         public ObservableCollection<Weapon> Weapons { get; set; }
-        public ObservableCollection<WeaponCharity> Charities { get; set; }
+        public ObservableCollection<Charity> Charities { get; set; }
 
         public UnitViewModel()
         {
-            Charities = new ObservableCollection<WeaponCharity>()
+            Charities = new ObservableCollection<Charity>()
             {
-                new WeaponCharity("Без зачарований", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0 ),
-                new WeaponCharity("Мобильность", 0, 5, 0, 5, 0, 0, 0, 0, 0, 0 ,0, 0 ),
-                new WeaponCharity("Острота", 10, 10, 0, 10, 10, 0, 0, 0, 0, 0 ,0, 0 ),
-                new WeaponCharity("Донат", 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,0, 0 ),
+                new Charity("Без зачарований", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0 ),
+                new Charity("Мобильность", 0, 5, 0, 5, 0, 0, 0, 0, 0, 0 ,0, 0 ),
+                new Charity("Острота", 10, 10, 0, 10, 10, 0, 0, 0, 0, 0 ,0, 0 ),
+                new Charity("Донат", 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,0, 0 ),
             };
 
             Weapons = new ObservableCollection<Weapon>()

@@ -55,12 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MyClasses\Equipment.cs" />
     <Compile Include="MyClasses\Rogue.cs" />
     <Compile Include="MyClasses\Unit.cs" />
     <Compile Include="MyClasses\UnitViewModel.cs" />
     <Compile Include="MyClasses\Warrior.cs" />
     <Compile Include="MyClasses\Weapon.cs" />
-    <Compile Include="MyClasses\WeaponCharity.cs" />
+    <Compile Include="MyClasses\Charity.cs" />
     <Compile Include="MyClasses\Wizard.cs" />
     <Compile Include="MyInterfaces\IAttack.cs" />
     <Compile Include="MyInterfaces\IHealth.cs" />
